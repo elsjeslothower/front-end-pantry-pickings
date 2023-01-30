@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
+// GET individual user
 const accessDashboardApi = (email, password) => {
   // add login verification here
 };
 
+// POST new user
 const addUserApi = () => {
   // add user to db here
   // home: sign up page
@@ -105,8 +107,41 @@ const addNewContactApi = (currentUserID, inputName, inputIntolerances, inputNote
     });
 };
 
-// Other Backend axios needed: user authentication/pwd encryption, 
-// delete models, update contact model
+const deletePantryItemApi = (pantry_item_id) => {
+  return axios
+    .delete(`${kBaseUrl}/pantry/${pantry_item_id}`)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteRecipeApi = (recipe_id) => {
+  return axios
+    .delete(`${kBaseUrl}/recipes/${recipe_id}`)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteContactApi = (contact_id) => {
+  return axios
+    .delete(`${kBaseUrl}/contacts/${contact_id}`)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Other Backend axios needed: 
+// user authentication/pwd encryption, update contact model
 
 function App() {
   return (
