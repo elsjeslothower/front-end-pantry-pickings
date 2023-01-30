@@ -140,6 +140,24 @@ const deleteContactApi = (contact_id) => {
     });
 };
 
+const updateContactApi = (contact_id, currentUserID, inputName, inputIntolerances, inputNotes) => {
+  const currentData = {
+    full_name: inputName,
+    intolerances: inputIntolerances,
+    notes: inputNotes,
+    user_id: currentUserID,
+  }
+
+  return axios
+    .patch(`${kBaseUrl}/contacts/${contact_id}`, currentData)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // Other Backend axios needed: 
 // user authentication/pwd encryption, update contact model
 
