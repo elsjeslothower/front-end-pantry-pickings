@@ -1,7 +1,7 @@
-import Welcome from "./pages/Welcome";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Welcome from "./pages/welcome";
+import SignUp from "./pages/signup";
+import Login from "./pages/login";
+import Dashboard from "./pages/dashboard";
 
 export const routes = [
   {
