@@ -1,7 +1,10 @@
+import "./Welcome.css"
+
 const Welcome = () => {
   return (
     <div>
-      Welcome to Pantry Pickings!
+      <h1>Welcome to Pantry Pickings!</h1>
+      <button className="enter">Click here to enter</button>
     </div>
   );
 };
