@@ -6,14 +6,14 @@ const Contact = (props) => {
   return (
     <div className="individual-card">
       <section className="contact_info">
-        <h2>{props.full_name}</h2>
+        <h1>{props.full_name}</h1>
         <ul>
           <li>{props.intolerances}</li>
           <li>{props.notes}</li>
         </ul>
       </section>
       <section>
-        <h2>Update {props.full_name}:</h2>
+        <h2>Edit {props.full_name}'s Contact:</h2>
         <select name="dietary_preferences" multiple>
           <option>Gluten-Free</option>
           <option>Dairy-Free</option>

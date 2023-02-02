@@ -1,10 +1,13 @@
-import "./Welcome.css"
+import { Link } from "react-router-dom";
+import "./welcome.css"
 
 const Welcome = () => {
   return (
     <div>
       <h1>Welcome to Pantry Pickings!</h1>
-      <button className="enter">Click here to enter</button>
+      <Link to="/login"><button>Click here to login</button></Link>
+      <p>Don't have an account?</p>
+      <Link to="/signup">Sign up here</Link>
     </div>
   );
 };

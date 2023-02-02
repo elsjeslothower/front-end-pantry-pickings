@@ -1,7 +1,17 @@
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
     <div>
-      Hello from Login!!
+      <h1>Login here</h1>
+      <ul id="login-info">
+        {/* <li>Username: <input type="email">...@gmail.com</input></li> */}
+        <li>Username: <input type="email"></input></li>
+        <li>Password: <input type="password"></input></li>
+      </ul>
+      <Link to="/login"><button>Let's go!!</button></Link>
+      <p>Don't have an account?</p>
+      <Link to="/signup">Sign up here</Link>
     </div>
   );
 };
