@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
+// Should I put all this info in a component instead?
+
 const SignUp = () => {
   return (
     <div>
       <h1>Create an account here</h1>
       <ul id="login-info">
-        {/* <li>Username: <input type="email">...@gmail.com</input></li> */}
         <li>First name: <input type="text" required></input></li>
         <li>Last name: <input type="text" required></input></li>
         <li>Username: <input type="email" required placeholder="must be an email"></input></li>

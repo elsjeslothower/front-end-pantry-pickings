@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+// Should I put all this info in a component instead?
+
 const Login = () => {
   return (
     <div>
