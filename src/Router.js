@@ -1,11 +1,15 @@
 import { Navigate } from "react-router-dom";
 
 import Welcome from "./pages/welcome";
-import SignUp from "./pages/signup";
 import Login from "./pages/login";
+import SignUp from "./pages/signup";
 import Dashboard from "./pages/dashboard";
-import FourOhFour from "./pages/404";
+import FullPantry from "./pages/FullPantry";
+import RecipeCalculator from "./pages/calculator";
+import SavedRecipes from "./pages/SavedRecipes";
 import AddressBook from "./pages/AddressBook";
+import Account from "./pages/account";
+import FourOhFour from "./pages/404";
 
 export const routes = [
   {
@@ -13,20 +17,36 @@ export const routes = [
     path: "/",
   },
   {
-    element: <SignUp />,
-    path: "/signup",
-  },
-  {
     element: <Login />,
     path: "/login",
+  },
+  {
+    element: <SignUp />,
+    path: "/signup",
   },
   {
     element: <Dashboard />,
     path: "/dashboard",
   },
   {
+    element: <FullPantry />,
+    path: "/full-pantry",
+  },
+  {
+    element: <RecipeCalculator />,
+    path: "/calculator",
+  },
+  {
+    element: <SavedRecipes />,
+    path: "/saved-recipes",
+  },
+  {
     element: <AddressBook />,
     path: "/address-book"
+  },
+  {
+    element: <Account />,
+    path: "/account",
   },
   {
     element: <FourOhFour />,
