@@ -10,6 +10,10 @@ import Recipe from "../components/Recipe";
 import RecipeList from "../components/RecipeList";
 
 // AXIOS CALLS
+import axios from "axios";
+
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+
 const getRecipesApi = (user_id) => {
   return axios
     .get(`${kBaseUrl}/user/${user_id}/recipes`)

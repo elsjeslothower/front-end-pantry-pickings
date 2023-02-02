@@ -10,7 +10,9 @@ import PantryItem from "../components/PantryItem";
 import PantryList from "../components/PantryList";
 
 // AXIOS CALLS
+import axios from "axios";
 
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
 // APP RENDERING
 const FullPantry = () => {
