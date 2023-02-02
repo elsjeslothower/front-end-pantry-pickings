@@ -74,4 +74,4 @@ const RecipeCalculator = () => {
   );
 };
 
-export default SavedRecipes;
+export default RecipeCalculator;
