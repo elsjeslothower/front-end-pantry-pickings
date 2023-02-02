@@ -27,9 +27,12 @@ const AddressBook = () => {
       <p>Include Contact component in here:</p>
       <Contact />
       <p>ContactList (contacts mapped out) here:</p>
-      <ContactList />
-      <p>Original Contact data for reference:
-      {mockContacts.map(contact => <Contact {...contact} />)}</p>
+      {/* <ContactList /> */}
+      <p>_____________________________________</p>
+      <h2>Original Contact data for reference:</h2>
+      <p>
+        {mockContacts.map(contact => <Contact {...contact} />)}
+      </p>
       <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
     </div>
   );

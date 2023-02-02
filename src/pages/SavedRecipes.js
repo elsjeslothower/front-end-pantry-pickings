@@ -46,9 +46,9 @@ const SavedRecipes = () => {
     <div>
       <h1>Welcome to your saved recipes!</h1>
       <p>Include Recipe in here:</p>
-      <Recipe />
+      {/* <Recipe /> */}
       <p>RecipeList (recipes mapped out) here:</p>
-      <RecipeList />
+      {/* <RecipeList /> */}
       <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
     </div>
   );

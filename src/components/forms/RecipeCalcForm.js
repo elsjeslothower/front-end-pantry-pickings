@@ -6,7 +6,7 @@ const RecipeCalcForm = (props) => {
   return (
     <div className="individual-card">
       <section>
-        <h2>Edit {props.user_id}'s Contact:</h2>
+        <h2>Form to make call to RapidAPI:</h2>
         <select name="dietary_preferences" multiple>
           <option>Gluten-Free</option>
           <option>Dairy-Free</option>

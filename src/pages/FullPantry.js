@@ -24,9 +24,9 @@ const FullPantry = () => {
     <div>
       <h1>Welcome to your pantry!</h1>
       <p>Include PantryItem in here:</p>
-      <PantryItem />
+      {/* <PantryItem /> */}
       <p>PantryList (PantryItems mapped out) here:</p>
-      <PantryList />
+      {/* <PantryList /> */}
       <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
     </div>
   );
