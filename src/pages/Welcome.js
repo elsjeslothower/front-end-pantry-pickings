@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import "./welcome.css"
 
-const burger = require('../../public/images/');
+const burger = require('../images/clipart47340.png');
 
 const Welcome = () => {
   return (
     <div id="welcome">
       <h1>Welcome to Pantry Pickings!</h1>
       <img id="burger" src={burger} alt="burger"></img>
-      <Link to="/login"><button>Click here to login</button></Link>
+      <div><Link to="/login"><button>Click here to login</button></Link></div>
       <p>Don't have an account?</p>
       <Link to="/signup">Sign up here</Link>
     </div>
