@@ -12,9 +12,9 @@ const SignUp = () => {
         <li>Password: <input type="text" required placeholder="at least 8 characters"></input></li>
         <li>Confirm password: <input type="text" placeholder="must match ^^"></input></li>
       </ul>
-      <Link to="/login"><button>Let's go!!</button></Link>
-      <p>Don't have an account?</p>
-      <Link to="/signup">Sign up here</Link>
+      <Link to="/dashboard"><button>Let's go!!</button></Link>
+      <p>Already have an account?</p>
+      <Link to="/login">Login here</Link>
     </div>
   );
 };
