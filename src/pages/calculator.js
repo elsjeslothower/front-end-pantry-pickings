@@ -1,3 +1,5 @@
+import "./calculator.css"
+
 // ROUTER
 import { Link } from "react-router-dom";
 
@@ -63,6 +65,9 @@ const RecipeCalculator = () => {
   // set useState hooks here
   
   // add handling functions here
+  const handleRecipeFinder = () => {
+    console.log("hey!! put something here!");
+  };
 
   return (
     <div>
@@ -73,6 +78,8 @@ const RecipeCalculator = () => {
       {/* <RecipeList /> */}
       <p>Form for API call:</p>
       <RecipeCalcForm />
+      <button onSubmit={handleRecipeFinder}>Let's find a recipe!</button>
+      <div className="spacer"></div>
       <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
     </div>
   );
