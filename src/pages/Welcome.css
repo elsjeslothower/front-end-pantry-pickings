@@ -2,6 +2,10 @@
     color: darkolivegreen;
 }
 
-div {
-    align-items: center;
+#welcome {
+    text-align: center;
+}
+
+#burger {
+    size-adjust: 40%;
 }
