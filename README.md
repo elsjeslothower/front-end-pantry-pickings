@@ -22,4 +22,4 @@ Scouring through your pantry and fridge is a time-consuming and tedious task whe
 ## Conclusion
 I hope you enjoy interacting with this project as much as I had fun making it! To future Elsje: look at how far you have come and everything you've learned beyond what's been written here. If you're interested in projects like these, or have questions about my code, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/elsje-slothower/)
 ### Warm Regards, 
-### Elsje Slothower (she/her)
+#### Elsje Slothower (she/her)
