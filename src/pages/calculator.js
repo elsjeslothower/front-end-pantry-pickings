@@ -73,7 +73,7 @@ const RecipeCalculator = () => {
     <div>
       <h1>Welcome to find-a-recipe!</h1>
       <p>Include Recipe in here:</p>
-      {/* <Recipe /> */}
+      <Recipe />
       <p>RecipeList (recipes mapped out) here:</p>
       {/* <RecipeList /> */}
       <p>Form for API call:</p>
