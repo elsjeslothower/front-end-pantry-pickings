@@ -1,70 +1,24 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Front End Pantry Pickings
+## Overview
+This is my Capstone project for the digital Cohort 18 at Ada Developers Academy. Pantry Pickings is a dinner party web app designed to help hosts choose an ideal recipe that is the most cost-effective (using ingredients they already have at home) while also accounting for their guests' dietary preferences and intolerances. 
+Specifically, the reason I chose this Capstone idea out of all the ideas swirling around in my brain was because it intimidated me the most. React is the language I have had the most difficult time wrapping my head around, so I wanted to challenge myself while gaining some industry knowledge of what React could be capable of.
+## Timeline
+The time allotted to complete this project was 15 days over three weeks. I split up this time 1:2 - one week for backend functionality, two for frontend. 
+### Links
+- [Heroku Backend](https://pantry-pickings-back-end.herokuapp.com/)
+- [Backend repo on GitHub](https://github.com/elsjeslothower/back-end-pantry-pickings)
+- [UX website wireframe](https://www.canva.com/design/DAFW8CmXpBE/pTbGkiEpBRZa7kVETcPCtg/view?utm_content=DAFW8CmXpBE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+## Intended MVP Featureset
+- Takes ingredients as input, outputs recipes that contain the input
+- Records friends' dietary preferences
+- Aesthetic culinary-themed layout (if time allows)
+### Elevator Pitch
+Scouring through your pantry and fridge is a time-consuming and tedious task when planning for a dinner party. What if there was a way to simplify this and make dinner more fun? Introducing Pantry Pickings: the app that turns your task into a tasty adventure!
+### Learning Goals
+- Bring an idea to life, from conception to utilization
+- Learn more about backend technologies
+- Broaden my understanding of how languages are interconnected
+- Ideally, complete my original idea (working App that matches ingredients with recipes)
+## Conclusion
+I hope you enjoy interacting with this project as much as I had fun making it! To future Elsje: look at how far you have come and everything you've learned beyond what's been written here. If you're interested in projects like these, or have questions about my code, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/elsje-slothower/)
+### Warm Regards, Elsje Slothower (she/her)
