@@ -4,14 +4,22 @@ import PantryItem from "./PantryItem";
 
 const PantryList = (props) => {
   return (
-    <PantryItem
-    />
-  )
-}
+    props.pantryItemData.map((pantryItem) => (
+      <PantryItem
+        key={pantryItem.pantry_item_id}
+        pantry_item_id={pantryItem.pantry_item_id}
+        category={pantryItem.category}
+        exp_date={pantryItem.exp_date}
+      />
+    ))
+  );
+};
 
 PantryList.propTypes = {
   pantryItemData: PropTypes.arrayOf(PropTypes.shape({
-    info: PropTypes.bool.isRequired,
+    pantry_item_id: PropTypes.number.isRequired,
+    category: PropTypes.string,
+    exp_date: PropTypes.string,
   }))
 };
 
