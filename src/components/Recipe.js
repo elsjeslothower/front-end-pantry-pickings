@@ -8,7 +8,7 @@ const Recipe = (props) => {
       <h2>{props.recipe_title}</h2>
       <a target="_blank" href={props.source_url}>
         <img
-          class="img-thumbnail" 
+          className="img-thumbnail" 
           src={props.recipe_img} 
           alt={`dish: ${props.recipe_title}`}
         />
