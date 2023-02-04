@@ -9,7 +9,7 @@ const Dashboard = () => {
       <ol>
         <li><Link to={"/"}>To homepage (welcome!)</Link></li>
         <li><Link to={"/login"}>To login page</Link></li>
-        <li><Link to={"/signup"}>To signup page</Link></li>
+        <li><Link to={"/register"}>To signup page</Link></li>
         <li><Link to={"/dashboard"}>To dashboard</Link></li>
         <li><Link to={"/full-pantry"}>To pantry</Link></li>
         <li><Link to={"/calculator"}>To find-a-recipe</Link></li>

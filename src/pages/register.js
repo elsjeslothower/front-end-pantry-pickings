@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 // Should I put all this info in a component instead?
 
-const SignUp = () => {
+const Register = () => {
   return (
     <div>
       <h1>Create an account here</h1>
@@ -20,4 +20,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

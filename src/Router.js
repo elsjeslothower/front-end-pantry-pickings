@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import Welcome from "./pages/welcome";
 import Login from "./pages/login";
-import SignUp from "./pages/signup";
+import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import FullPantry from "./pages/FullPantry";
 import RecipeCalculator from "./pages/calculator";
@@ -21,8 +21,8 @@ export const routes = [
     path: "/login",
   },
   {
-    element: <SignUp />,
-    path: "/signup",
+    element: <Register />,
+    path: "/register",
   },
   {
     element: <Dashboard />,
