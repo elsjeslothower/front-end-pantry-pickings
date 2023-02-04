@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./Forms.css";
 
 const LoginForm = () => {
@@ -19,6 +20,9 @@ const LoginForm = () => {
         <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
       </div>
       <button type="submit" class="btn btn-warning">Let's Go!</button>
+      <p className="p-3 text-center">
+        Don't have an account? <Link to="/register">Sign up here</Link>
+      </p>
     </form>
   );
 };
