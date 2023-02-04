@@ -1,21 +1,10 @@
-import { Link } from "react-router-dom";
-
-// Should I put all this info in a component instead?
+import RegistrationForm from "../components/forms/RegistrationForm";
 
 const Register = () => {
   return (
     <div>
-      <h1>Create an account here</h1>
-      <ul id="login-info">
-        <li>First name: <input type="text" required></input></li>
-        <li>Last name: <input type="text" required></input></li>
-        <li>Username: <input type="email" required placeholder="must be an email"></input></li>
-        <li>Password: <input type="text" required placeholder="at least 8 characters"></input></li>
-        <li>Confirm password: <input type="text" placeholder="must match ^^"></input></li>
-      </ul>
-      <Link to="/dashboard"><button>Let's go!!</button></Link>
-      <p>Already have an account?</p>
-      <Link to="/login">Login here</Link>
+      <h1 class="display-1">Create an account</h1>
+      <RegistrationForm />
     </div>
   );
 };
