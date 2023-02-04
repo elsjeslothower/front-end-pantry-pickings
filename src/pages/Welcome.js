@@ -5,12 +5,13 @@ const burger = require('../images/clipart47340.png');
 
 const Welcome = () => {
   return (
-    <div id="welcome">
+    <div className="container" id="welcome">
       <h1>Welcome to Pantry Pickings!</h1>
       <img id="burger" src={burger} alt="burger"></img>
-      <div><Link to="/login"><button>Click here to login</button></Link></div>
-      <p>Don't have an account?</p>
-      <Link to="/signup">Sign up here</Link>
+      <div className="p-2"><Link to="/login"><button>Click here to login</button></Link></div>
+      <p>
+        Don't have an account? <Link to="/register">Sign up here</Link>
+      </p>
     </div>
   );
 };

@@ -7,7 +7,11 @@ const Recipe = (props) => {
     <div className="individual-recipe">
       <h2>{props.recipe_title}</h2>
       <a target="_blank" href={props.source_url}>
-        <img src={props.recipe_img} alt={`completed dish: ${props.recipe_title}`}/>
+        <img
+          class="img-thumbnail" 
+          src={props.recipe_img} 
+          alt={`dish: ${props.recipe_title}`}
+        />
       </a>
       <ul>
         <li>recipe #{props.api_id}</li>
