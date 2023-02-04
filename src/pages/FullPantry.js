@@ -34,16 +34,16 @@ const FullPantry = () => {
 
   // user_id here??
   const getPantry = () => {
-    getPantryApi(user_id).then((pantryItems) => {
-      setPantryItemData(pantryItems);
+    getPantryApi().then((pantryItems) => {
+      setPantryData(pantryItems);
     });
   };
 
-  useEffect(() => {
-    // data fetching code
-    // user_id here??
-    getPantry();
-  }), [pantryData]
+  // useEffect(() => {
+  //   // data fetching code
+  //   // user_id here??
+  //   getPantry();
+  // }), [pantryData]
 
   return (
     <div>
