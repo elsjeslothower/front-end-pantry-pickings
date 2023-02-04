@@ -12,13 +12,38 @@ import PantryList from "../components/PantryList";
 // AXIOS CALLS
 import axios from "axios";
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
+
+const getPantryApi = (user_id) => {
+  return axios
+    .get(`${kBaseUrl}/user/${user_id}/pantry`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+};
 
 // APP RENDERING
 const FullPantry = () => {
   // set useState hooks here
+  const [pantryData, setPantryData] = useState([]);
   
   // add handling functions here
+
+  // user_id here??
+  const getPantry = () => {
+    getPantryApi(user_id).then((pantryItems) => {
+      setPantryItemData(pantryItems);
+    });
+  };
+
+  useEffect(() => {
+    // data fetching code
+    // user_id here??
+    getPantry();
+  }), [pantryData]
 
   return (
     <div>

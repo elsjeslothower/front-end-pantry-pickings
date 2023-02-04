@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./login.css"
 
 // Should I put all this info in a component instead?
 

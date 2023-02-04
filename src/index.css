@@ -5,11 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #FFAB00; */
-  /* background-color: #D67800; */
-  background-color: #EB6200;
-  /* background-color: #D63A00; */
-  /* background-color: #F72B0C; */
+  color: #320701;
+  background: rgb(236,96,96);
+  background: linear-gradient(90deg, rgba(236,96,96,1) 0%, rgba(247,43,12,1) 5%, rgba(255,171,0,1) 75%); 
+}
+
+h1 {
+  text-align: center;
 }
 
 code {
