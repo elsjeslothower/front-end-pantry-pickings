@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import LogoutButton from "../components/LogoutButton";
 
 const Dashboard = () => {
+  const getUser = () => {
+    // user auth here
+  };
+  
   return (
     <div>
       Hello from Dashboard!!
@@ -18,6 +23,7 @@ const Dashboard = () => {
         <li><Link to={"/account"}>To account info</Link></li>
         <li><Link to={"/404"}>To 404</Link></li>
       </ol>
+      <LogoutButton />
     </div>
   );
 };

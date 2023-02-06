@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Welcome from "./pages/welcome";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Reset from "./pages/reset";
 import Dashboard from "./pages/dashboard";
 import FullPantry from "./pages/FullPantry";
 import RecipeCalculator from "./pages/calculator";
@@ -23,6 +24,10 @@ export const routes = [
   {
     element: <Register />,
     path: "/register",
+  },
+  {
+    element: <Reset />,
+    path: "/reset",
   },
   {
     element: <Dashboard />,
