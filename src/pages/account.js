@@ -8,7 +8,7 @@ const Account = () => {
   return (
     <div>
       Hello from account info!
-      <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
+      <Link to="/dashboard"><button>To dashboard</button></Link>
     </div>
   );
 };
