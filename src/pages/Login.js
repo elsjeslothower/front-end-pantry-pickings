@@ -1,6 +1,12 @@
 import LoginForm from "../components/forms/LoginForm";
-import UFLoginForm from "../components/forms/UFLoginForm";
 import { Link } from "react-router-dom";
+import Userfront from "@userfront/react";
+
+Userfront.init("6bg65zyn");
+
+const UFLoginForm = Userfront.build({
+  toolId: "llbaokl"
+});
 
 const Login = () => {
   return (

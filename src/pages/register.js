@@ -1,6 +1,12 @@
 import RegistrationForm from "../components/forms/RegistrationForm";
-import SignupForm from "../components/forms/SignupForm";
 import { Link } from "react-router-dom";
+import Userfront from "@userfront/react";
+
+Userfront.init("6bg65zyn");
+
+const SignupForm = Userfront.build({
+  toolId: "nkdnrab"
+});
 
 const Register = () => {
   return (
