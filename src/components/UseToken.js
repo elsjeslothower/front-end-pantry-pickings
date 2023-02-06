@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const UseToken = () => {
-  const getToken() {
+  const getToken = () => {
     const userToken = localStorage.getItem('token');
     return userToken && userToken
   }
@@ -12,7 +12,7 @@ const UseToken = () => {
     localStorage.setItem('token', userToken);
     setToken(userToken);
   };
-  const removeToken() {
+  const removeToken = () => {
     localStorage.removeItem("token");
     setToken(null);
   };
