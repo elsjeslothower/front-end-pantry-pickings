@@ -3,17 +3,23 @@ import PropTypes from "prop-types";
 
 const RecipeCalcForm = () => {
   return (
-    <div className="individual-card">
-      <section>
-        <h2>Form to make call to RapidAPI:</h2>
-        <select name="dietary_preferences" multiple>
-          <option>Gluten-Free</option>
-          <option>Dairy-Free</option>
-          <option>Vegan</option>
-        </select>
-        <input type="text" placeholder="intolerances"/>
-      </section>
-    </div>
+    <form htmlFor="rapidApiCall" className="container">
+      <div htmlFor="pantry" className="mb-3">
+        <label htmlFor="inputPantry" className="form-label">Pantry items</label>
+        <input type="text" className="form-control" id="inputPantry"/>
+      </div>
+
+      <div htmlFor="quantity" className="mb-3">
+        <label htmlFor="inputQuantity" className="form-label">How many recipes?</label>
+        <input type="text" className="form-control" id="inputQuantity"/>
+      </div>
+
+      <div htmlFor="recipeOptions" className="mb-3">
+        <label htmlFor="inputOptions" className="form-label">Type of meal</label>
+        <input type="text" className="form-control" id="inputOptions"/>
+      </div>
+      <button type="submit" className="btn btn-warning">Find-a-Recipe</button>
+    </form>
   );
 };
 

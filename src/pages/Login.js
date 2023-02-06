@@ -1,6 +1,7 @@
 import LoginForm from "../components/forms/LoginForm";
 import { Link } from "react-router-dom";
 import Userfront from "@userfront/react";
+import RecipeCalcForm from "../components/forms/RecipeCalcForm";
 
 Userfront.init("6bg65zyn");
 
