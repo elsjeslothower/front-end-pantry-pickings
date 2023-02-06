@@ -1,15 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Forms.css";
 
 const RegistrationForm = () => {
-  const handleNewAccount = () => {
-    // func here
-    console.log("Add new user to DB!!!!!")
-  };
-  
   return (
-    <form onSubmit={() => handleNewAccount()} className="container">
+    <form className="container">
       <div htmlFor="firstName" className="mb-3">
         <label htmlFor="inputFirstName" className="form-label">First Name</label>
         <input type="text" className="form-control" id="inputFirstName"/>

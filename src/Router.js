@@ -1,15 +1,15 @@
 import { Navigate } from "react-router-dom";
 
-import Welcome from "./pages/welcome";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Reset from "./pages/reset";
-import Dashboard from "./pages/dashboard";
+import Welcome from "./pages/Welcome";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Reset from "./pages/Reset";
+import Dashboard from "./pages/Dashboard";
 import FullPantry from "./pages/FullPantry";
-import RecipeCalculator from "./pages/calculator";
+import RecipeCalculator from "./pages/Calculator";
 import SavedRecipes from "./pages/SavedRecipes";
 import AddressBook from "./pages/AddressBook";
-import Account from "./pages/account";
+import Account from "./pages/Account";
 import FourOhFour from "./pages/404";
 
 export const routes = [

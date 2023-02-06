@@ -1,5 +1,3 @@
-import "./calculator.css"
-
 // ROUTER
 import { Link } from "react-router-dom";
 

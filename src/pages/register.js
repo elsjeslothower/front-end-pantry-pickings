@@ -1,6 +1,5 @@
 import RegistrationForm from "../components/forms/RegistrationForm";
 import SignupForm from "../components/forms/SignupForm";
-import Userfront from "@userfront/react";
 
 const Register = () => {
   return (
