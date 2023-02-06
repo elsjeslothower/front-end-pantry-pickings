@@ -12,12 +12,12 @@ const RegistrationForm = () => {
     <form onSubmit={() => handleNewAccount()} className="container">
       <div htmlFor="firstName" className="mb-3">
         <label htmlFor="inputFirstName" className="form-label">First Name</label>
-        <input type="password" className="form-control" id="inputFirstName"/>
+        <input type="text" className="form-control" id="inputFirstName"/>
       </div>
 
       <div htmlFor="lastName" className="mb-3">
         <label htmlFor="inputLastName" className="form-label">Last Name</label>
-        <input type="password" className="form-control" id="inputLastName"/>
+        <input type="text" className="form-control" id="inputLastName"/>
       </div>
 
       <div htmlFor="email" className="mb-3">

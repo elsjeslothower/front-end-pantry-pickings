@@ -4,7 +4,7 @@ import Userfront from "@userfront/react";
 
 const Register = () => {
   return (
-    <div>
+    <div className="container">
       <h1 className="display-1 p-4">Create an account</h1>
       <SignupForm />
       {/* <RegistrationForm /> */}

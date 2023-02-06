@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Forms.css";
 
-const RecipeCalcForm = (props) => {
+const RecipeCalcForm = () => {
   return (
     <div className="individual-card">
       <section>
