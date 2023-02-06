@@ -1,10 +1,18 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LogoutButton from "../components/LogoutButton";
+import Userfront from "@userfront/react";
 
 const Dashboard = () => {
-  const getUser = () => {
-    // user auth here
-  };
+  let navigate = useNavigate();
+  let loggedIn = Userfront.accessToken()
+
+  useEffect(() => {
+    if (!loggedIn) {
+      return navigate("/login");
+    };
+  }, [loggedIn])
+  
   
   return (
     <div>
