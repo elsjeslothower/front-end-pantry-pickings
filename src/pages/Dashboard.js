@@ -13,25 +13,33 @@ const Dashboard = () => {
     };
   }, [loggedIn])
   
-  
+  let user = {
+    name: "Elijah",
+  }
+
   return (
-    <div>
-      Hello from Dashboard!!
-      This div element will serve as a makeshift Nav bar.
-      Here are your options:
-      <ol>
-        <li><Link to={"/"}>To homepage (welcome!)</Link></li>
-        <li><Link to={"/login"}>To login page</Link></li>
-        <li><Link to={"/register"}>To signup page</Link></li>
-        <li><Link to={"/dashboard"}>To dashboard</Link></li>
-        <li><Link to={"/full-pantry"}>To pantry</Link></li>
-        <li><Link to={"/calculator"}>To find-a-recipe</Link></li>
-        <li><Link to={"/saved-recipes"}>To saved recipes</Link></li>
-        <li><Link to={"/address-book"}>To address book</Link></li>
-        <li><Link to={"/account"}>To account info</Link></li>
-        <li><Link to={"/404"}>To 404</Link></li>
-      </ol>
-      <LogoutButton />
+    <div className="container">
+      <h1 className="mb-5">Pantry Pickings for {user.name}</h1>
+      <section htmlFor="infoCards">
+        <div className="card m-2">
+          <div className="card-body">
+            <h5 className="card-title">About Pantry Pickings</h5>
+            <h6 className="card-subtitle mb-2 text-muted">How it works</h6>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" className="card-link">Card link</a>
+            <a href="#" className="card-link">Another link</a>
+          </div>
+        </div>
+        <div className="card m-2">
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" className="card-link">Card link</a>
+            <a href="#" className="card-link">Another link</a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

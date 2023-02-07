@@ -5,7 +5,7 @@ const burger = require('./images/clipart47340.png');
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-custom navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-custom bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           <img id="burger" 

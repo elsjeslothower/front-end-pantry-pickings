@@ -3,23 +3,19 @@ import PropTypes from "prop-types";
 
 const Contact = (props) => {
   return (
-    <div className="individual-card">
-      <section className="contact_info">
-        <h1>{props.full_name}</h1>
-        <ul>
-          <li>{props.intolerances}</li>
-          <li>{props.notes}</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Edit {props.full_name}'s Contact:</h2>
-        <select name="dietary_preferences" multiple>
-          <option>Gluten-Free</option>
-          <option>Dairy-Free</option>
-          <option>Vegan</option>
-        </select>
-        <input type="text" name="intolerances"/>
-      </section>
+    <div htmlFor="individualCards">
+      <div className="card m-2">
+        <div className="card-body">
+          <h1 className="card-title">{props.full_name}</h1>
+          <p className="card-text">
+            <ul>
+              <li>{props.intolerances}</li>
+              <li>{props.notes}</li>
+            </ul>
+          </p>
+          <button className="card-link">Edit Contact</button>
+        </div>
+      </div>
     </div>
   );
 };
