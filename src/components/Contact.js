@@ -4,16 +4,16 @@ import PropTypes from "prop-types";
 const Contact = (props) => {
   return (
     <div htmlFor="individualCards">
-      <div className="card m-2">
-        <div className="card-body">
-          <h1 className="card-title">{props.full_name}</h1>
+      <div className="card m-2" style={{background:"bisque", width: "18rem"}}>
+        <div className="card-body" style={{color:"darksalmon"}}>
+          <h4 className="card-title">Name: {props.full_name}</h4>
           <p className="card-text">
-            <ul>
-              <li>{props.intolerances}</li>
-              <li>{props.notes}</li>
+            <ul className="list-group list-group-flush" style={{color:"bisque", background:"bisque"}}>
+              <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>Diet: {props.intolerances}</li>
+              <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>Notes: {props.notes}</li>
             </ul>
           </p>
-          <button className="card-link">Edit Contact</button>
+          <button type="button" className="card-link btn btn-info" style={{color:"bisque"}}>Edit Contact</button>
         </div>
       </div>
     </div>
