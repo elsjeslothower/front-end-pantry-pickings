@@ -22,17 +22,24 @@ const AddressBook = () => {
   // add handling functions here
 
   return (
-    <div>
-      <h1>Welcome to your address book!</h1>
-      <p>Include Contact component in here:</p>
-      <Contact />
-      <p>ContactList (contacts mapped out) here:</p>
-      {/* <ContactList /> */}
-      <p>_____________________________________</p>
-      <h2>Original Contact data for reference:</h2>
-      <p>
-        {mockContacts.map(contact => <Contact {...contact} />)}
-      </p>
+    <div className="container">
+      <h1 className="row">Welcome to your address book!</h1>
+      <div className="row">
+        <div className="col-sm-6 mb-3 mb-sm-0">
+          <p className="col">Include Contact component in here:</p>
+          <Contact />
+        </div>
+      </div>
+      <p>_________________________________________</p>
+      <div className="row">
+        <div className="col-sm-6 mb-3 mb-sm-0">
+          <ContactList
+          contactData={mockContacts}/>
+        </div>
+      </div>
+      <div>
+        Here goes AddNewContactForm:
+      </div>
       <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
     </div>
   );
