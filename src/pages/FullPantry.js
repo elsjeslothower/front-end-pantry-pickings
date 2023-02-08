@@ -8,17 +8,33 @@ import { useState, useEffect } from "react";
 // COMPONENTS
 import PantryItem from "../components/PantryItem";
 import PantryList from "../components/PantryList";
+import AddPantryItemForm from "../components/forms/AddPantryItem";
+import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";
+import Userfront from "@userfront/react";
+Userfront.init("6bg65zyn");
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const localHost = "http://127.0.0.1:5000";
 
-const getPantryApi = (user_id) => {
+const getPantryApi = (userId) => {
   return axios
-    .get(`${kBaseUrl}/user/${user_id}/pantry`)
+    .get(`${kBaseUrl}/user/${userId}/pantry`)
     .then((response) => {
       return response.data;
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+};
+
+const addNewPantryItemApi = (newItemData) => {
+  return axios
+    .post(`${localHost}/pantry`, newItemData)
+    .then((res) => {
+      return res.data;
     })
     .catch((err) => {
       console.log(err)
@@ -28,31 +44,56 @@ const getPantryApi = (user_id) => {
 // APP RENDERING
 const FullPantry = () => {
   // set useState hooks here
-  const [pantryData, setPantryData] = useState([]);
-  
+  const [pantryData, setPantryData] = useState(mockPantry);
+  const userId = Userfront.user["userId"]
   // add handling functions here
 
-  // user_id here??
-  const getPantry = () => {
-    getPantryApi().then((pantryItems) => {
+  const getPantry = (userId) => {
+    getPantryApi(userId).then((pantryItems) => {
       setPantryData(pantryItems);
     });
   };
 
   // useEffect(() => {
   //   // data fetching code
-  //   // user_id here??
-  //   getPantry();
-  // }), [pantryData]
+  //   pantryData ? getPantry(userId) : pantryData = "add information here"
+  // }, [pantryData])
+
+  const handlePantrySubmit = (title, category, expDate, userId) => {
+    const newItemData = {
+      pantry_item_title:title,
+      category:category,
+      exp_date:expDate,
+      user_id:userId,
+    };
+    addNewPantryItemApi(newItemData)
+      .then((newItem) => {
+        console.log(newItem);
+        setPantryData([...pantryData, newItem]);
+      })
+      .catch((err) => console.log(err))
+  };
+
 
   return (
-    <div>
-      <h1>Welcome to your pantry!</h1>
-      <p>Include PantryItem in here:</p>
-      <PantryItem />
-      <p>PantryList (PantryItems mapped out) here:</p>
-      {/* <PantryList /> */}
-      <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
+    <div className="container">
+      <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
+      <div className="row">
+        <div className="col">
+          <p>AddPantryItemForm here:</p>
+          <AddPantryItemForm
+            handlePantrySubmit={handlePantrySubmit}
+            userId={userId} 
+          />
+        </div>
+      </div>
+      <div className="row">
+        <p>PantryList (PantryItems mapped out) here:</p>
+        <PantryList
+          pantryData={pantryData}
+          handlePantrySubmit={handlePantrySubmit} 
+        />
+      </div>
     </div>
   );
 };

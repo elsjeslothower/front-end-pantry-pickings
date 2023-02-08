@@ -8,39 +8,43 @@ import { useState, useEffect } from "react";
 // COMPONENTS
 import Contact from "../components/Contact";
 import ContactList from "../components/ContactList";
-import mockContacts from "../data.js";
+import AddContactForm from "../components/forms/AddContact";
+import mockContacts from "../mockData/mockContact.js";
 
 // AXIOS CALLS
 import axios from "axios";
+
+import Userfront from "@userfront/react";
+Userfront.init("6bg65zyn");
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
 // APP RENDERING
 const AddressBook = () => {
   // set useState hooks here
-  
+  const [contactData, setContactData] = useState(mockContacts);
+  const userId = Userfront.user["userId"]
   // add handling functions here
+  const handleContactSubmit = () => {
+    console.log("add handleContactSubmit function here");
+  };
 
   return (
     <div className="container">
-      <h1 className="row">Welcome to your address book!</h1>
-      <div className="row">
-        <div className="col-sm-6 mb-3 mb-sm-0">
-          <p className="col">Include Contact component in here:</p>
-          <Contact />
-        </div>
-      </div>
-      <p>_________________________________________</p>
-      <div className="row">
-        <div className="col-sm-6 mb-3 mb-sm-0">
-          <ContactList
-          contactData={mockContacts}/>
-        </div>
-      </div>
+      <h1 className="display-1">Anya's Address Book</h1>
       <div>
         Here goes AddNewContactForm:
+        <AddContactForm 
+          handleContactSubmit={handleContactSubmit}
+          userId={userId}
+        />
       </div>
-      <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
+      <div className="row">
+        <p>ContactList (Contacts mapped out) here:</p>
+        <ContactList
+          contactData={contactData}
+        />
+      </div>
     </div>
   );
 };
