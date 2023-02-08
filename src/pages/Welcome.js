@@ -6,7 +6,7 @@ const burger = require('../images/clipart47340.png');
 const Welcome = () => {
   return (
     <div className="container" id="welcome">
-      <h1>Welcome to Pantry Pickings!</h1>
+      <h1 className="display-1">Welcome to Pantry Pickings!</h1>
       <img id="burger" className="m-3" src={burger} alt="burger"></img>
       <div className="p-2"><Link to="/login"><button type="submit" className="btn btn-warning">Click here to login</button></Link></div>
       <p>

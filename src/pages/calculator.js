@@ -25,17 +25,13 @@ const RecipeCalculator = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome to find-a-recipe!</h1>
-      <p>Include Recipe in here:</p>
-      <Recipe />
-      <p>RecipeList (recipes mapped out) here:</p>
-      {/* <RecipeList /> */}
+    <div className="container">
+      <h1 className="display-1">Find-a-Recipe</h1>
       <p>Form for API call:</p>
-      <RecipeCalcForm />
-      <button onSubmit={handleRecipeFinder}>Let's find a recipe!</button>
-      <div className="spacer"></div>
-      <Link to="/dashboard"><button>Click here to see nav bar</button></Link>
+      <RecipeCalcForm
+        handleRecipeFinder={handleRecipeFinder}
+      />
+      <div className="spacer p-3"></div>
     </div>
   );
 };

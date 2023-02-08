@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      <h1 className="mb-5">Pantry Pickings for {Userfront.user["name"]}</h1>
+      <h1 className="display-1 mb-5">Pantry Pickings for {Userfront.user["name"]}</h1>
       {/* <button onClick={validateLoginApi}>Press here to try authentication</button> */}
       <section htmlFor="infoCards">
         <div className="card m-2">
