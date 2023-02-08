@@ -6,19 +6,6 @@ import { useEffect, useState } from 'react';
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
-// GET individual user
-const getUserApi = (email, password) => {
-  // add login verification here
-  return axios
-    .get(`${kBaseUrl}/user/${}`)
-};
-
-// POST new user
-const addUserApi = () => {
-  // add user to db here
-  // home: sign up page
-};
-
 const getPantryApi = (user_id) => {
   return axios
     .get(`${kBaseUrl}/user/${user_id}/pantry`)

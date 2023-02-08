@@ -14,28 +14,6 @@ import axios from "axios";
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
-const getRecipesApi = (user_id) => {
-  return axios
-    .get(`${kBaseUrl}/user/${user_id}/recipes`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-};
-
-const deleteRecipeApi = (recipe_id) => {
-  return axios
-    .delete(`${kBaseUrl}/recipes/${recipe_id}`)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 // APP RENDERING
 const SavedRecipes = () => {
   // set useState hooks here

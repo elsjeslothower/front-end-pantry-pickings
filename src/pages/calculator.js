@@ -15,49 +15,6 @@ import axios from "axios";
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 
-const getRecipesApi = (user_id) => {
-  return axios
-    .get(`${kBaseUrl}/user/${user_id}/recipes`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-};
-
-const addNewRecipeApi = (currentUserID, rId, title, rSummary, url, img) => {
-  const currentData = {
-    api_id: rId,
-    recipe_title: title,
-    summary: rSummary,
-    source_url: url,
-    recipe_img: img,
-    user_id: currentUserID,
-  };
-
-  return axios
-    .post(`${kBaseUrl}/recipes`, currentData)
-    .then ((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      // maybe add error handling for api_id uniqueness
-      console.log(err);
-    });
-};
-
-const deleteRecipeApi = (recipe_id) => {
-  return axios
-    .delete(`${kBaseUrl}/recipes/${recipe_id}`)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 // APP RENDERING
 const RecipeCalculator = () => {
   // set useState hooks here
