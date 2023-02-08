@@ -1,25 +1,49 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LogoutButton from "../components/LogoutButton";
+import axios from "axios";
 import Userfront from "@userfront/react";
+Userfront.init("6bg65zyn");
+
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const local_host = "http://127.0.0.1:5000";
+
+// GET individual user
+const validateLoginApi = async () => {
+  try {
+    const res = await axios
+      .get(`${local_host}/login`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      });
+    console.log(res);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 
 const Dashboard = () => {
   let navigate = useNavigate();
   let loggedIn = Userfront.accessToken()
+  let user = {
+    name: "Elijah",
+  };
+  const userData = JSON.stringify(Userfront.user, null, 2);
 
   useEffect(() => {
     if (!loggedIn) {
       return navigate("/login");
     };
   }, [loggedIn])
-  
-  let user = {
-    name: "Elijah",
-  }
 
   return (
     <div className="container">
       <h1 className="mb-5">Pantry Pickings for {user.name}</h1>
+      <button onClick={validateLoginApi}>Press here to try authentication</button>
       <section htmlFor="infoCards">
         <div className="card m-2">
           <div className="card-body">
@@ -40,6 +64,9 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
+      {/* <p>{Userfront.user}</p> */}
+      <p>____________________</p>
+      <p>{userData}</p>
     </div>
   );
 };
