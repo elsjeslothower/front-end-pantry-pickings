@@ -1,11 +1,63 @@
-import logo from './logo.svg'; // change this when convenient
-import './App.css';
 import axios from 'axios';
+import { 
+  createBrowserRouter,
+  RouterProvider, 
+  useNavigate } from 'react-router-dom';
+import { routes } from './Router';
+import Navbar from './Navbar';
 import { useEffect, useState } from 'react';
-// COMPONENTS
+import Userfront from "@userfront/react";
+Userfront.init("6bg65zyn");
 
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const localHost = "http://127.0.0.1:5000";
 
+function App() {
+  // let navigate = useNavigate();
+  let loggedIn = Userfront.accessToken()
+
+  const [user, setUser] = useState(Userfront.user["userId"])
+  console.log(user)
+  console.log(setUser)
+  const userData = JSON.stringify(Userfront.user, null, 2);
+
+  const validateLoginApi = async () => {
+    try {
+      const res = await axios
+        .get(`${localHost}/login`, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `u ${Userfront.tokens.accessToken}`,
+          }
+        })
+        setUser(res.data)
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      return useNavigate("/");
+    } else {
+      validateLoginApi()
+    }
+  }, [loggedIn])
+
+  const router = createBrowserRouter(routes);
+
+  return (
+    <RouterProvider router={router} />
+  );
+}
+
+export default App;
+
+
+
+
+// ________________________________________________________________
 const getPantryApi = (user_id) => {
   return axios
     .get(`${kBaseUrl}/user/${user_id}/pantry`)
@@ -150,25 +202,4 @@ const updateContactApi = (contact_id, currentUserID, inputName, inputIntolerance
 // Other Backend axios needed: 
 // user authentication/pwd encryption, update contact model
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
