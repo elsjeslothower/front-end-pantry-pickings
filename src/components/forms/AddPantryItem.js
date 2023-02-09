@@ -14,16 +14,32 @@ const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmitItem} htmlFor="newPantryItem" className="container">
+    <form
+      onSubmit={handleSubmitItem}
+      htmlFor="newPantryItem"
+      className="container"
+    >
       <div htmlFor="title" className="my-3">
-        <label htmlFor="inputTitle" className="form-label">Item</label>
-        <input type="text" value={newItem} onChange={handleNewItem} className="form-control" id="inputTitle"/>
+        <label htmlFor="inputTitle" className="form-label">
+          Item
+        </label>
+        <input
+          type="text"
+          value={newItem}
+          onChange={handleNewItem}
+          className="form-control"
+          id="inputTitle"
+        />
       </div>
 
       <div htmlFor="category" className="my-3">
-        <label htmlFor="inputCategory" className="form-label">Category</label>
-        <select class="form-select" aria-label="Default select example">
-          <option value="15" selected>Other</option>
+        <label htmlFor="inputCategory" className="form-label">
+          Category
+        </label>
+        <select className="form-select" aria-label="Default select example">
+          <option value="15" selected>
+            Other
+          </option>
           <option value="1">Produce</option>
           <option value="2">Grains</option>
           <option value="3">Meat</option>
@@ -42,12 +58,21 @@ const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
       </div>
 
       <div htmlFor="expDate" className="my-3">
-        <label htmlFor="inputExpDate" className="form-label">Expiration Date</label>
-        <input type="text" className="form-control" placeholder="MM/DD/YYYY" id="inputExpDate"/>
+        <label htmlFor="inputExpDate" className="form-label">
+          Expiration Date
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="MM/DD/YYYY"
+          id="inputExpDate"
+        />
       </div>
-      <button type="submit" className="btn btn-warning">Add to Pantry</button>
+      <button type="submit" className="btn btn-warning">
+        Add to Pantry
+      </button>
     </form>
-  )
-}
+  );
+};
 
 export default AddPantryItemForm;
