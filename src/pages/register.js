@@ -36,7 +36,7 @@ const Register = () => {
       <p className="p-3 text-center">
         Already have an account? <Link to="/login">Login here</Link>
       </p>
-      <button onClick={addUserApi}>Press here to try adding to database</button>
+      {/* <button onClick={addUserApi}>Press here to try adding to database</button> */}
     </div>
   );
 };

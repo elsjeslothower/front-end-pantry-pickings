@@ -31,16 +31,15 @@ const AddressBook = () => {
 
   return (
     <div className="container">
-      <h1 className="display-1">Anya's Address Book</h1>
+      <h1 className="display-1">{Userfront.user["name"]}'s Address Book</h1>
       <div>
-        Here goes AddNewContactForm:
+        <p>Idea: Make forms collapsable?</p>
         <AddContactForm 
           handleContactSubmit={handleContactSubmit}
           userId={userId}
         />
       </div>
-      <div className="row">
-        <p>ContactList (Contacts mapped out) here:</p>
+      <div className="mt-3 row">
         <ContactList
           contactData={contactData}
         />

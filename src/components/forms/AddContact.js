@@ -32,7 +32,7 @@ const AddContactForm = ({ handleContactSubmit, userId }) => {
         ></textarea>
       </div>
       <button type="submit" className="btn btn-warning">
-        Add to Pantry
+        Add Contact
       </button>
     </form>
   );

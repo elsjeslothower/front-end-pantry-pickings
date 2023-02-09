@@ -27,11 +27,13 @@ const RecipeCalculator = () => {
   return (
     <div className="container">
       <h1 className="display-1">Find-a-Recipe</h1>
-      <p>Form for API call:</p>
+      <p>Idea: Make forms collapsable?</p>
       <RecipeCalcForm
         handleRecipeFinder={handleRecipeFinder}
       />
       <div className="spacer p-3"></div>
+      <h1 className="text-start display-5">Results:</h1>
+      <p>Hide this ^^^ until API responds</p>
     </div>
   );
 };
