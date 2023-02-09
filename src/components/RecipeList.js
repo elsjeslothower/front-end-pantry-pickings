@@ -21,6 +21,7 @@ const RecipeList = (props) => {
 RecipeList.propTypes = {
   recipeData: PropTypes.arrayOf(PropTypes.shape({
     recipe_id: PropTypes.number.isRequired,
+    api_id: PropTypes.number.isRequired,
     recipe_title: PropTypes.string.isRequired,
     source_url: PropTypes.string,
     recipe_img: PropTypes.string,

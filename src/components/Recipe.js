@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
+
 const Recipe = (props) => {
   return (
-    <div className="individual-recipe">
-      <h2>{props.recipe_title}</h2>
-      <a target="_blank" href={props.source_url}>
-        <img
-          className="img-thumbnail" 
-          src={props.recipe_img} 
-          alt={`dish: ${props.recipe_title}`}
-        />
-      </a>
-      <ul>
-        <li>recipe #{props.api_id}</li>
-        <li>summary: {props.summary}</li>
-      </ul>
+    <div className="card m-2" style={{background:"bisque", width: "18rem"}}>
+      <img 
+        src={props.recipe_img} 
+        className="card-img-top" 
+        alt={`dish: ${props.recipe_title}`}
+      />
+      <div className="card-body" style={{color:"darksalmon"}}>
+        <h5 className="card-title">Title:{props.recipe_title}</h5>
+        <p className="card-text" style={{background:"bisque"}}>
+          Summary:{props.summary}
+        </p>
+        <a href={props.source_url} className="btn btn-primary">Full Recipe</a>
+      </div>
     </div>
   );
 };

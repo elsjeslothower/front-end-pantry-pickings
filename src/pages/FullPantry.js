@@ -6,7 +6,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 // COMPONENTS
-import PantryItem from "../components/PantryItem";
 import PantryList from "../components/PantryList";
 import AddPantryItemForm from "../components/forms/AddPantryItem";
 import mockPantry from "../mockData/mockPantry";
@@ -16,7 +15,7 @@ import axios from "axios";
 import Userfront from "@userfront/react";
 Userfront.init("6bg65zyn");
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
 const localHost = "http://127.0.0.1:5000";
 
 const getPantryApi = (userId) => {
@@ -80,15 +79,14 @@ const FullPantry = () => {
       <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
       <div className="row">
         <div className="col">
-          <p>AddPantryItemForm here:</p>
+          <p>Idea: Make forms collapsable?</p>
           <AddPantryItemForm
             handlePantrySubmit={handlePantrySubmit}
             userId={userId} 
           />
         </div>
       </div>
-      <div className="row">
-        <p>PantryList (PantryItems mapped out) here:</p>
+      <div className="mt-3 row">
         <PantryList
           pantryData={pantryData}
           handlePantrySubmit={handlePantrySubmit} 
