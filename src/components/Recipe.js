@@ -16,7 +16,8 @@ const Recipe = (props) => {
         <p className="card-text" style={{background:"bisque"}}>
           Summary:{props.summary}
         </p>
-        <a href={props.source_url} className="btn btn-primary">Full Recipe</a>
+        <a href={props.source_url} className="btn btn-info">Full Recipe</a>
+        <button className="btn btn-success">Toggle Save</button>
       </div>
     </div>
   );
