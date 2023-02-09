@@ -9,8 +9,9 @@ const Navbar = () => {
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           <img id="burger" 
-          className="m-2 d-inline-block align-text-top" 
-          height="40"
+          className="m-3 d-inline-block align-text-top" 
+          // width="30"
+          height="50"
           src={burger} 
           alt="burger"/>
         </a>

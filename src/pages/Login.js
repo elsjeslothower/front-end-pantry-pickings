@@ -37,8 +37,7 @@ const Login = () => {
       <p className="p-3 text-center">
         Don't have an account? <Link to="/register">Sign up here</Link>
       </p>
-      <button onClick={validateLoginApi}>Press here to try authentication</button>
-      <p><Link to="/dashboard">To dashboard</Link></p>
+      {/* <button onClick={validateLoginApi}>Press here to try authentication</button> */}
     </div>
   );
 };
