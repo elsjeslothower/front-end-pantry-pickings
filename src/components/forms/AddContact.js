@@ -1,36 +1,181 @@
-const AddContactForm = ({ handleContactSubmit, userId }) => {
+import { useState } from "react";
+
+const AddContactForm = ({ handleContactSubmit }) => {
+  const [newContactName, setNewContactName] = useState("");
+  const [newContactIntolerances, setNewContactIntolerances] = useState("");
+  const [newContactDiet, setNewContactDiet] = useState([]);
+  const [newContactNotes, setNewContactNotes] = useState("");
+
+  const handleSubmitContact = (event) => {
+    event.preventDefault();
+    handleContactSubmit(newContactName, newContactIntolerances, newContactDiet, newContactNotes)
+  };
+
+  const handleNewContactName = (event) => {
+    event.preventDefault();
+    setNewContactName(event.target.value);
+  };
+
+  const handleNewContactIntolerances = (event) => {
+    event.preventDefault();
+    setNewContactIntolerances(event.target.value);
+  };
+
+  const handleNewContactDiet = (event) => {
+    event.preventDefault();
+    setNewContactDiet([...newContactDiet, event.target.value]);
+    console.log(`new diet choices: ${newContactDiet}`)
+  };
+
+  const handleNewContactNotes = (event) => {
+    event.preventDefault();
+    setNewContactNotes(event.target.value);
+  };
+  
   return (
-    <form htmlFor="newPantryItem" className="container">
-      <div htmlFor="title" className="mb-3">
-        <label htmlFor="inputTitle" className="form-label">
+    <form onSubmit={handleSubmitContact} htmlFor="newContact" className="container">
+      <div htmlFor="title" className="my-3">
+        <label htmlFor="inputName" className="form-label">
           Contact Name
         </label>
-        <input type="text" className="form-control" id="inputTitle" />
+        <input 
+          type="text" 
+          name="name"
+          value={newContactName}
+          onChange={handleNewContactName}
+          className="form-control" 
+          id="inputName" />
       </div>
 
-      <div htmlFor="category" className="mb-3">
-        <label htmlFor="inputCategory" className="form-label">
+      <div htmlFor="intolerances" className="my-3">
+        <label htmlFor="inputIntolerances" className="form-label">
           Intolerances
         </label>
-        <input type="text" className="form-control" id="inputCategory" />
+        <input 
+          type="text" 
+          name="intolerances"
+          value={newContactIntolerances}
+          onChange={handleNewContactIntolerances}
+          className="form-control" 
+          id="inputCategory" />
       </div>
 
-      <div htmlFor="category" className="mb-3">
-        <label htmlFor="inputCategory" className="form-label">
+      <div>
+        <label htmlFor="inputDiet" className="form-label">
           Dietary Preferences
         </label>
-        <input type="text" className="form-control" id="inputCategory" />
-      </div>
+        <div></div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox1"
+              value="vegetarian"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox1">
+              Vegetarian
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox2"
+              value="vegan"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox2">
+              Vegan
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox3"
+              value="pescatarian"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox3">
+              Pescatarian
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox4"
+              value="gluten-free"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox4">
+              Gluten-free
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox5"
+              value="dairy-free"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox5">
+              Dairy-free
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox6"
+              value="paleo"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox6">
+              Paleo
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox7"
+              value="keto"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox7">
+              Keto
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox8"
+              value="other"
+              onChange={handleNewContactDiet}
+            />
+            <label className="form-check-label" htmlFor="inlineCheckbox8">
+              Other
+            </label>
+          </div>
+        </div>
 
-      <div htmlFor="recipeOptions" className="mb-3">
+      <div htmlFor="recipeOptions" className="my-3">
         <label htmlFor="inputOptions" className="form-label">
           Notes
         </label>
         <textarea
           className="form-control"
+          name="notes"
+          value={newContactNotes}
+          onChange={handleNewContactNotes}
           aria-label="With textarea"
         ></textarea>
       </div>
+
       <button type="submit" className="btn btn-warning">
         Add Contact
       </button>
