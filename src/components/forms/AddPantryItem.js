@@ -1,17 +1,31 @@
 import { useState } from "react";
 
-const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
-  const [newItem, setNewItem] = useState("");
-
-  const handleNewItem = (event) => {
-    setNewItem(event.target.value);
-  };
+const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
+  const [newItemTitle, setNewItemTitle] = useState("");
+  const [newItemExpDate, setNewItemExpDate] = useState("");
+  const [newItemCategory, setNewItemCategory] = useState("Other");
 
   const handleSubmitItem = (event) => {
     event.preventDefault();
-    handlePantrySubmit(newItem, userId);
-    setNewItem("");
+    handlePantryItemSubmit(newItemTitle, newItemCategory, newItemExpDate);
   };
+
+  const handleNewItemTitle = (event) => {
+    event.preventDefault();
+    setNewItemTitle(event.target.value);
+  };
+
+  const handleNewItemCategory = (event) => {
+    event.preventDefault();
+    console.log(`old value of newItemCategory: ${newItemCategory}`)
+    setNewItemCategory(event.target.value);
+    console.log(`new value of newItemCategory: ${newItemCategory}`)
+  }
+
+  const handleNewItemExpDate = (event) => {
+    event.preventDefault();
+    setNewItemExpDate(event.target.value);
+  }
 
   return (
     <form
@@ -25,8 +39,9 @@ const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
         </label>
         <input
           type="text"
-          value={newItem}
-          onChange={handleNewItem}
+          name="title"
+          value={newItemTitle}
+          onChange={handleNewItemTitle}
           className="form-control"
           id="inputTitle"
         />
@@ -36,24 +51,29 @@ const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
         <label htmlFor="inputCategory" className="form-label">
           Category
         </label>
-        <select className="form-select" aria-label="Default select example">
-          <option value="15" selected>
-            Other
-          </option>
-          <option value="1">Produce</option>
-          <option value="2">Grains</option>
-          <option value="3">Meat</option>
-          <option value="4">Poultry</option>
-          <option value="5">Seafood</option>
-          <option value="6">Baking items</option>
-          <option value="7">Spices</option>
-          <option value="8">Sauces</option>
-          <option value="9">Cooking items</option>
-          <option value="10">Canned goods</option>
-          <option value="11">Pasta/Rice</option>
-          <option value="12">Beverages</option>
-          <option value="13">Snacks</option>
-          <option value="14">Sweets</option>
+        <select 
+          className="form-select" 
+          name="category"
+          defaultValue={newItemCategory}
+          onChange={handleNewItemCategory}
+          aria-label="Default select example"
+        >
+          <option value="Other">Other</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Produce">Produce</option>
+          <option value="Grains">Grains</option>
+          <option value="Meat">Meat</option>
+          <option value="Poultry">Poultry</option>
+          <option value="Seafood">Seafood</option>
+          <option value="Baking items">Baking items</option>
+          <option value="Spices">Spices</option>
+          <option value="Sauces">Sauces</option>
+          <option value="Cooking items">Cooking items</option>
+          <option value="Canned goods">Canned goods</option>
+          <option value="Pasta/Rice">Pasta/Rice</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Snacks">Snacks</option>
+          <option value="Sweets">Sweets</option>
         </select>
       </div>
 
@@ -63,7 +83,10 @@ const AddPantryItemForm = ({ handlePantrySubmit, userId }) => {
         </label>
         <input
           type="text"
+          name="expDate"
           className="form-control"
+          value={newItemExpDate}
+          onChange={handleNewItemExpDate}
           placeholder="MM/DD/YYYY"
           id="inputExpDate"
         />

@@ -11,6 +11,8 @@ const PantryList = (props) => {
         pantry_item_title={pantryItem.pantry_item_title}
         category={pantryItem.category}
         exp_date={pantryItem.exp_date}
+        onDeletePantryItem={props.onDeletePantryItem}
+        handlePantryItemSubmit={props.handlePantryItemSubmit}
       />
     ))
   );
@@ -22,7 +24,9 @@ PantryList.propTypes = {
     pantry_item_title: PropTypes.string.isRequired,
     category: PropTypes.string,
     exp_date: PropTypes.string,
-  }))
+  })),
+  onDeletePantryItem:PropTypes.func.isRequired,
+  handlePantryItemSubmit:PropTypes.func.isRequired
 };
 
 export default PantryList;
