@@ -18,15 +18,13 @@ const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
 
   const handleNewItemCategory = (event) => {
     event.preventDefault();
-    console.log(`old value of newItemCategory: ${newItemCategory}`)
     setNewItemCategory(event.target.value);
-    console.log(`new value of newItemCategory: ${newItemCategory}`)
-  }
+  };
 
   const handleNewItemExpDate = (event) => {
     event.preventDefault();
     setNewItemExpDate(event.target.value);
-  }
+  };
 
   return (
     <form

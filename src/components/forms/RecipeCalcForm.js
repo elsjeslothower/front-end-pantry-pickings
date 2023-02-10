@@ -1,9 +1,38 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 
-const RecipeCalcForm = () => {
+const RecipeCalcForm = ({ handleRecipeSearchSubmit }) => {
+  const [searchType, setSearchType] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [mealOptions, setMealOptions] = useState([]);
+
+  const handleSubmitSearch = (event) => {
+    event.preventDefault();
+    handleRecipeSearchSubmit(quantity);
+  };
+
+  const handleSearchType = (event) => {
+    event.preventDefault();
+    setSearchType(event.target.value);
+  };
+
+  const handleQuantity = (event) => {
+    event.preventDefault();
+    setQuantity(event.target.value);
+    console.log(`quantity: ${event.target.value}`)
+  };
+
+  const handleMealOptions = (event) => {
+    event.preventDefault();
+    setMealOptions([...mealOptions, event.target.value]);
+    console.log(`new meal options: ${mealOptions}`)
+  };
+  
   return (
-    <form htmlFor="rapidApiCall" className="container">
+    <form 
+      onSubmit={handleRecipeSearchSubmit}
+      htmlFor="rapidApiCall" 
+      className="container">
       <div htmlFor="pantry" className="mb-3">
         <label htmlFor="inputPantry" className="form-label">
           Search Type:
@@ -12,11 +41,12 @@ const RecipeCalcForm = () => {
           <input
             className="form-check-input"
             type="radio"
-            name="exampleRadios"
+            name="searchType"
+            value={searchType}
+            onChange={handleSearchType}
             id="exampleRadios1"
-            value="option1"
           />
-          <label className="form-check-label" for="exampleRadios1">
+          <label className="form-check-label" htmlFor="exampleRadios1">
             Flexible
           </label>
         </div>
@@ -25,10 +55,11 @@ const RecipeCalcForm = () => {
             className="form-check-input"
             type="radio"
             name="exampleRadios"
+            value={searchType}
+            onChange={handleSearchType}
             id="exampleRadios2"
-            value="option2"
           />
-          <label className="form-check-label" for="exampleRadios2">
+          <label className="form-check-label" htmlFor="exampleRadios2">
             Strict
           </label>
         </div>
@@ -37,17 +68,18 @@ const RecipeCalcForm = () => {
             className="form-check-input"
             type="radio"
             name="exampleRadios"
+            value={searchType}
+            onChange={handleSearchType}
             id="exampleRadios3"
-            value="option3"
           />
-          <label className="form-check-label" for="exampleRadios3">
+          <label className="form-check-label" htmlFor="exampleRadios3">
             Exclusive
           </label>
         </div>
       </div>
 
       <div htmlFor="quantity">
-        <label for="customRange2" className="form-label">
+        <label htmlFor="customRange2" className="form-label">
           How many recipes?
         </label>
         <input
@@ -56,6 +88,8 @@ const RecipeCalcForm = () => {
           min="1"
           max="5"
           id="customRange2"
+          value={quantity}
+          onChange={handleQuantity}
         />
         <span className="text-start">1</span>
         <span className="float-end">5</span>
@@ -71,9 +105,10 @@ const RecipeCalcForm = () => {
               className="form-check-input"
               type="checkbox"
               id="inlineCheckbox1"
-              value="option1"
+              value="vegetarian"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox1">
+            <label className="form-check-label" htmlFor="inlineCheckbox1">
               Vegetarian
             </label>
           </div>
@@ -82,9 +117,10 @@ const RecipeCalcForm = () => {
               className="form-check-input"
               type="checkbox"
               id="inlineCheckbox2"
-              value="option2"
+              value="vegan"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox2">
+            <label className="form-check-label" htmlFor="inlineCheckbox2">
               Vegan
             </label>
           </div>
@@ -92,10 +128,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
+              id="inlineCheckbox3"
+              value="pescatarian"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox1">
+            <label className="form-check-label" htmlFor="inlineCheckbox1">
               Pescatarian
             </label>
           </div>
@@ -103,10 +140,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
+              id="inlineCheckbox4"
+              value="gluten-free"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox2">
+            <label className="form-check-label" htmlFor="inlineCheckbox2">
               Gluten-free
             </label>
           </div>
@@ -114,10 +152,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
+              id="inlineCheckbox5"
+              value="dairy-free"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox1">
+            <label className="form-check-label" htmlFor="inlineCheckbox1">
               Dairy-free
             </label>
           </div>
@@ -125,10 +164,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
+              id="inlineCheckbox6"
+              value="paleo"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox2">
+            <label className="form-check-label" htmlFor="inlineCheckbox2">
               Paleo
             </label>
           </div>
@@ -136,10 +176,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
+              id="inlineCheckbox7"
+              value="keto"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox1">
+            <label className="form-check-label" htmlFor="inlineCheckbox1">
               Keto
             </label>
           </div>
@@ -147,10 +188,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
+              id="inlineCheckbox8"
+              value="mediterrean"
+              onChange={handleMealOptions}
             />
-            <label className="form-check-label" for="inlineCheckbox2">
+            <label className="form-check-label" htmlFor="inlineCheckbox2">
               Mediterranean
             </label>
           </div>
@@ -161,11 +203,6 @@ const RecipeCalcForm = () => {
       </button>
     </form>
   );
-};
-
-RecipeCalcForm.propTypes = {
-  user_id: PropTypes.number.isRequired,
-  // need to plan this better; shelved for now
 };
 
 export default RecipeCalcForm;
