@@ -119,7 +119,7 @@ const FullPantry = () => {
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
       <h2 className="display-5">
-        {pantryData == [] 
+        {pantryData === [] 
           ? "Use the form to add to your pantry"
           : ""
         }
