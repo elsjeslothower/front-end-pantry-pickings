@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./forms.css"
 
 const AddContactForm = ({ handleContactSubmit }) => {
   const [newContactName, setNewContactName] = useState("");
@@ -176,7 +177,7 @@ const AddContactForm = ({ handleContactSubmit }) => {
         ></textarea>
       </div>
 
-      <button type="submit" className="btn btn-warning">
+      <button type="submit" className="btn btn-warning" style={{ color:"#531209" }}>
         Add Contact
       </button>
     </form>

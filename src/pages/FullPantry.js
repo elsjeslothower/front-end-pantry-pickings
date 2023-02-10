@@ -28,7 +28,7 @@ const getPantryApi = async () => {
           Authorization: `u ${Userfront.tokens.accessToken}`,
         }
       })
-      console.log(`success!! data here:"${res.data}"`)
+      console.log(`success getPantry!! data here:"${res.data}"`)
       console.log(res.data[0])
       return (res.data)
   } catch (err) {
@@ -77,7 +77,6 @@ const deletePantryItemApi = async (pantry_item_id) => {
 // APP RENDERING
 const FullPantry = () => {
   const [pantryData, setPantryData] = useState([]);
-  const userId = Userfront.user["userId"]
 
   const getPantry = () => {
     getPantryApi().then((pantryItems) => {
@@ -105,9 +104,9 @@ const FullPantry = () => {
       exp_date:itemExpDate,
     };
     addNewPantryItemApi(newItemData)
-      .then((newItem) => {
-        console.log(newItem);
-        setPantryData([...pantryData, newItem]);
+      .then((res) => {
+        console.log(`${res} here`);
+        setPantryData([...pantryData, res]);
       })
       .catch((err) => console.log(err))
   };
@@ -124,10 +123,16 @@ const FullPantry = () => {
       </h2>
       <div className="row">
         <div className="col">
-          {/* <button onClick={getPantryApi}>Press here to try getting pantry</button> */}
-          <AddPantryItemForm
-            handlePantryItemSubmit={handlePantryItemSubmit}
-          />
+          <button class="my-3 btn btn-warning" style={{ color:"#531209" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Click here to add items to your pantry
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body" style={{ background:"darksalmon" }}>
+              <AddPantryItemForm
+                handlePantryItemSubmit={handlePantryItemSubmit}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-3 row">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./forms.css"
 
 const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
   const [newItemTitle, setNewItemTitle] = useState("");
@@ -31,9 +32,9 @@ const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
     <form
       onSubmit={handleSubmitItem}
       htmlFor="newPantryItem"
-      className="container"
+      className="container form-a"
     >
-      <div htmlFor="title" className="my-3">
+      <div htmlFor="title">
         <label htmlFor="inputTitle" className="form-label">
           Item
         </label>
@@ -89,9 +90,10 @@ const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
           onChange={handleNewItemExpDate}
           placeholder="MM/DD/YYYY"
           id="inputExpDate"
+          required
         />
       </div>
-      <button type="submit" className="btn btn-warning">
+      <button type="submit" className="btn btn-warning" style={{ color:"#531209" }}>
         Add to Pantry
       </button>
     </form>

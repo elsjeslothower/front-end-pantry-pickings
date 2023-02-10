@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 // COMPONENTS
 import ContactList from "../components/ContactList";
 import AddContactForm from "../components/forms/AddContact";
+import mockContacts from "../mockData/mockContact";
 
 // USERFRONT
 import Userfront from "@userfront/react";
@@ -28,6 +29,7 @@ const getContactsApi = async () => {
         }
       })
       console.log(`success!! data here:"${res.data}"`)
+      return res.data
   } catch (err) {
     console.log(err);
   }
@@ -86,9 +88,9 @@ const AddressBook = () => {
     });
   };
 
-  // useEffect(() => {
-  //   getContacts();
-  // }, []);
+  useEffect(() => {
+    getContacts();
+  }, []);
 
   const updateContact = (contact_id) => {
     updateContactApi(contact_id);
@@ -128,12 +130,18 @@ const AddressBook = () => {
         : ""}
       </h2>
       <div>
-        <button onClick={getContacts}>Press here to try getting contacts</button>
-        <AddContactForm 
-          handleContactSubmit={handleContactSubmit}
-        />
+        <button class="my-3 btn btn-warning" style={{ color:"#531209" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Click here to add friends to your contacts
+        </button>
+        <div class="collapse" id="collapseExample">
+          <div class="mb-3 card card-body" style={{ background: "darksalmon" }}>
+            <AddContactForm 
+              handleContactSubmit={handleContactSubmit}
+            />
+          </div>
+        </div>
       </div>
-      <div className="mt-3 row">
+      <div className="mb-3 row">
         <ContactList
           contactData={contactData}
           onUpdateContact={updateContact}

@@ -51,7 +51,7 @@ const Dashboard = () => {
       {/* <button onClick={validateLoginApi}>Press here to try authentication</button> */}
       <h1 className="lead fs-2">Getting Started</h1>
       <div className="accordion accordion-flush" id="accordionFlush">
-        <div className="accordion-item">
+        <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingOne">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
               Pantry
@@ -68,7 +68,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="accordion-item">
+        <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingTwo">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
               Saved Recipes
@@ -83,7 +83,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="accordion-item">
+        <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingThree">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
               Contacts
