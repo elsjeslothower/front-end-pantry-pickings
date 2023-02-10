@@ -96,6 +96,17 @@ const RecipeCalcForm = () => {
               value="option1"
             />
             <label className="form-check-label" for="inlineCheckbox1">
+              Pescatarian
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox2"
+              value="option2"
+            />
+            <label className="form-check-label" for="inlineCheckbox2">
               Gluten-free
             </label>
           </div>
@@ -103,10 +114,10 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
+              id="inlineCheckbox1"
+              value="option1"
             />
-            <label className="form-check-label" for="inlineCheckbox2">
+            <label className="form-check-label" for="inlineCheckbox1">
               Dairy-free
             </label>
           </div>
@@ -114,22 +125,11 @@ const RecipeCalcForm = () => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-            />
-            <label className="form-check-label" for="inlineCheckbox1">
-              Healthy
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="checkbox"
               id="inlineCheckbox2"
               value="option2"
             />
             <label className="form-check-label" for="inlineCheckbox2">
-              Cheap
+              Paleo
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -140,7 +140,7 @@ const RecipeCalcForm = () => {
               value="option1"
             />
             <label className="form-check-label" for="inlineCheckbox1">
-              Popular
+              Keto
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -151,7 +151,7 @@ const RecipeCalcForm = () => {
               value="option2"
             />
             <label className="form-check-label" for="inlineCheckbox2">
-              Sustainable
+              Mediterranean
             </label>
           </div>
         </div>

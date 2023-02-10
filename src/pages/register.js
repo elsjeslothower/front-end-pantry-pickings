@@ -1,31 +1,13 @@
-import RegistrationForm from "../components/forms/RegistrationForm";
+// REACT HANDLING
 import { Link } from "react-router-dom";
+
+// USERFRONT
 import Userfront from "@userfront/react";
-import axios from "axios";
-
-const localHost = "http://127.0.0.1:5000";
-
 Userfront.init("6bg65zyn");
 
 const SignupForm = Userfront.build({
   toolId: "nkdnrab"
 });
-
-const addUserApi = async () => {
-  try {
-    const res = await axios
-      .get(`${localHost}/user`, 
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
-        }
-      });
-    return res.data;
-  } catch (err) {
-    console.error(err);
-  }
-};
 
 const Register = () => {
   return (

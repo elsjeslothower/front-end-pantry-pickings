@@ -4,17 +4,18 @@ import { useState, useEffect } from "react";
 
 //USERFRONT
 import Userfront from "@userfront/react";
-Userfront.init("6bg65zyn");
+
+// COMPONENTS
+import PantryList from "../components/PantryList";
+import AddPantryItemForm from "../components/forms/AddPantryItem";
+import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
 const localHost = "http://127.0.0.1:5000";
 
-// COMPONENTS
-import PantryList from "../components/PantryList";
-import AddPantryItemForm from "../components/forms/AddPantryItem";
-import mockPantry from "../mockData/mockPantry";
+Userfront.init("6bg65zyn");
 
 // API CALLS
 const getPantryApi = async () => {
@@ -75,21 +76,18 @@ const deletePantryItemApi = async (pantry_item_id) => {
 
 // APP RENDERING
 const FullPantry = () => {
-  // set useState hooks here
   const [pantryData, setPantryData] = useState([]);
   const userId = Userfront.user["userId"]
-  // add handling functions here
 
-  const getPantry = (userId) => {
-    getPantryApi(userId).then((pantryItems) => {
+  const getPantry = () => {
+    getPantryApi().then((pantryItems) => {
       setPantryData(pantryItems);
     });
   };
 
   useEffect(() => {
-    // data fetching code
-    getPantry(userId)
-  }, [pantryData]);
+    getPantry();
+  }, []);
 
   const deletePantryItem = (pantry_item_id) => {
     deletePantryItemApi(pantry_item_id);
@@ -126,8 +124,7 @@ const FullPantry = () => {
       </h2>
       <div className="row">
         <div className="col">
-          <button onClick={getPantryApi}>Press here to try getting pantry</button>
-          <p>Idea: Make forms collapsable?</p>
+          {/* <button onClick={getPantryApi}>Press here to try getting pantry</button> */}
           <AddPantryItemForm
             handlePantryItemSubmit={handlePantryItemSubmit}
           />

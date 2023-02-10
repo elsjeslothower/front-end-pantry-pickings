@@ -1,12 +1,34 @@
+// REACT HANDLING
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+// USERFRONT
 import Userfront from "@userfront/react";
+
+// AXIOS CALLS
+import axios from "axios";
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const localHost = "http://127.0.0.1:5000";
+
 Userfront.init("6bg65zyn");
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
-const local_host = "http://127.0.0.1:5000";
+// API CALLS
+const validateLoginApi = async () => {
+  try {
+    const res = await axios
+      .get(`${localHost}/login`, 
+      {          headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      })
+      return (res.data)
+  } catch (err) {
+    console.error(err);
+  }
+};
 
+// APP RENDERING
 const Dashboard = () => {
   let navigate = useNavigate();
   let loggedIn = Userfront.accessToken()
@@ -18,25 +40,10 @@ const Dashboard = () => {
   useEffect(() => {
     if (!loggedIn) {
       return navigate("/login");
+    } else {
+      validateLoginApi();
     };
   }, [loggedIn])
-
-  // GET individual user
-  const validateLoginApi = async () => {
-    try {
-      const res = await axios
-        .get(`${local_host}/login`, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `u ${Userfront.tokens.accessToken}`,
-          }
-        })
-        setUser(res.data)
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <div className="container">

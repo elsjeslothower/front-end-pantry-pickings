@@ -1,12 +1,8 @@
-// ROUTER
-import { Link } from "react-router-dom";
-
 // REACT HANDLING
 import React from "react";
 import { useState, useEffect } from "react";
 
 // COMPONENTS
-import Recipe from "../components/Recipe";
 import RecipeList from "../components/RecipeList";
 import mockRecipes from "../mockData/mockRecipes";
 
@@ -48,7 +44,7 @@ const SavedRecipes = () => {
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Saved Recipes</h1>
-      <div className="row">
+      <div className="my-3 row">
         <RecipeList
           recipeData={recipeData}
         />

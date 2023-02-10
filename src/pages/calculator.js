@@ -6,14 +6,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 // COMPONENTS
-import Recipe from "../components/Recipe";
-import RecipeList from "../components/RecipeList";
 import RecipeCalcForm from "../components/forms/RecipeCalcForm";
+
+// USERFRONT
+import Userfront from "@userfront/react";
 
 // AXIOS CALLS
 import axios from "axios";
-
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+// include RapidApiUrl here
+
+Userfront.init("6bg65zyn");
+
+// API CALLS
 
 // APP RENDERING
 const RecipeCalculator = () => {

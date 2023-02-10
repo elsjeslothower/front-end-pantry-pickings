@@ -8,8 +8,12 @@ const PantryItem = (props) => {
         <h4 className="card-title">Item: {props.pantry_item_title}</h4>
         <div className="card-text">
           <ul className="list-group list-group-flush" style={{color:"bisque", background:"bisque"}}>
-            <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>Category: {props.category}</li>
-            <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>Expiration Date: {props.exp_date}</li>
+            <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>
+              Category: {props.category}
+            </li>
+            <li className="list-group-item" style={{color:"bisque", background:"darksalmon"}}>
+              Expiration Date: {props.exp_date}
+            </li>
           </ul>
         </div>
         <button type="button" 
