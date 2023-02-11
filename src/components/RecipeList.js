@@ -13,6 +13,8 @@ const RecipeList = (props) => {
         summary={recipe.summary}
         source_url={recipe.source_url}
         recipe_img={recipe.recipe_img}
+        used_ingredient_count={recipe.used_ingredient_count}
+        missed_ingredient_count={recipe.missed_ingredient_count}
       />
     ))
   );
@@ -23,8 +25,11 @@ RecipeList.propTypes = {
     recipe_id: PropTypes.number.isRequired,
     api_id: PropTypes.number.isRequired,
     recipe_title: PropTypes.string.isRequired,
+    summary: PropTypes.string,
     source_url: PropTypes.string,
     recipe_img: PropTypes.string,
+    used_ingredient_count: PropTypes.number,
+    missed_ingredient_count: PropTypes.number,
   }))
 };
 

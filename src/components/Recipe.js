@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
-
 const Recipe = (props) => {
   return (
     <div className="card m-2" style={{background:"bisque", width: "18rem"}}>
@@ -14,7 +12,10 @@ const Recipe = (props) => {
       <div className="card-body" style={{color:"darksalmon"}}>
         <h5 className="card-title">Title:{props.recipe_title}</h5>
         <p className="card-text" style={{background:"bisque"}}>
-          Summary:{props.summary}
+          {props.summary 
+          ? props.summary 
+          : `This recipe utilizes ${props.used_ingredient_count} 
+            items already in your pantry`}
         </p>
         <a href={props.source_url} className="btn btn-info">Full Recipe</a>
         <button className="btn btn-success">Toggle Save</button>
@@ -24,12 +25,14 @@ const Recipe = (props) => {
 };
 
 Recipe.propTypes = {
-  recipe_id: PropTypes.number.isRequired,
+  recipe_id: PropTypes.number,
   api_id: PropTypes.number.isRequired,
   recipe_title: PropTypes.string,
   summary: PropTypes.string,
   source_url: PropTypes.string,
   recipe_img: PropTypes.string,
+  used_ingredient_count: PropTypes.number,
+  missed_ingredient_count: PropTypes.number,
 };
 
 // Need to add used/missing ingredient count?
