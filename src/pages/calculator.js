@@ -4,17 +4,19 @@ import { useState, useEffect } from "react";
 
 // COMPONENTS
 import RecipeCalcForm from "../components/forms/RecipeCalcForm";
+import getPantryApi from "../pages/FullPantry";
 
 // USERFRONT
 import Userfront from "@userfront/react";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
 const localHost = "http://127.0.0.1:5000";
 
-const rapidApiUrl = "https://webknox-recipes.p.rapidapi.com/recipes"
-const rapidApiHost = 'webknox-recipes.p.rapidapi.com'
+const rapidApiUrl = "https://webknox-recipes.p.rapidapi.com/recipes";
+const rapidApiHost = 'webknox-recipes.p.rapidapi.com';
+const X_RAPIDAPI_KEY = '9053c90f68mshba9d59e69d50d31p17b1efjsn1c96b08397ba';
 
 Userfront.init("6bg65zyn");
 
@@ -29,7 +31,7 @@ const getRecipesRapidApi = async (req) => {
         number: req.quantity
       },
       headers: {
-        'X-RapidAPI-Key': os.environ.get(X_RapidAPI_Key)
+        'X-RapidAPI-Key': X_RAPIDAPI_KEY,
         'X-RapidAPI-Host': rapidApiHost
       }
     },)
@@ -38,13 +40,12 @@ const getRecipesRapidApi = async (req) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 // APP RENDERING
 const RecipeCalculator = () => {
-  // set useState hooks here
+  const [results, setResults] = useState([]);
   
-  // add handling functions here
   const handleRecipeFinder = () => {
     console.log("hey!! put something here!");
   };
