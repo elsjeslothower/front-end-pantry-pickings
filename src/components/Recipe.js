@@ -6,7 +6,7 @@ const Recipe = (props) => {
     <div className="card m-2" style={{background:"bisque", width: "18rem"}}>
       <img 
         src={props.recipe_img} 
-        className="card-img-top" 
+        className="mt-3 card-img-top" 
         alt={`dish: ${props.recipe_title}`}
       />
       <div className="card-body" style={{color:"darksalmon"}}>
@@ -17,8 +17,10 @@ const Recipe = (props) => {
           : `This recipe utilizes ${props.used_ingredient_count} 
             items already in your pantry`}
         </p>
-        <a href={props.source_url} className="btn btn-info">Full Recipe</a>
-        <button className="btn btn-success">Toggle Save</button>
+      </div>
+      <div className="mb-3 align-bottom text-center">
+        <a href={props.source_url} className="me-4 btn btn-info">Full Recipe</a>
+        <button className="ms-4 btn btn-danger">Remove</button>
       </div>
     </div>
   );
