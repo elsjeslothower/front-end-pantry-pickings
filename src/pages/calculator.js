@@ -42,6 +42,44 @@ const getRecipesRapidApi = async (req) => {
   }
 };
 
+const saveRecipe = async (req) => {
+  console.log(req);
+  try {
+    const res = await axios
+      .post(`${localHost}/recipes`, req,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      }, 
+    );
+  console.log(`success! data here: ${res.data}`);
+  return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const removeRecipe = async (api_id) => {
+  console.log(api_id)
+  try {
+    const res = await axios 
+      .delete(`${localHost}/recipes/${api_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      },
+    );
+    console.log(`success!! data here:"${res.data}"`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // APP RENDERING
 const RecipeCalculator = () => {
   const [results, setResults] = useState([]);

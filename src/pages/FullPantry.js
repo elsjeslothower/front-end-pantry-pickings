@@ -70,7 +70,7 @@ const deletePantryItemApi = async (pantry_item_id) => {
     console.log(`success!! data here:"${res.data}"`);
     return res.data;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
