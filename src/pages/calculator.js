@@ -10,7 +10,7 @@ import Userfront from "@userfront/react";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = os.environ.get(REACT_APP_BACKEND_UR)
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 const localHost = "http://127.0.0.1:5000";
 
 const rapidApiUrl = "https://webknox-recipes.p.rapidapi.com/recipes"

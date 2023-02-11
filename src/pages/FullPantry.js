@@ -12,7 +12,7 @@ import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/";
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 const localHost = "http://127.0.0.1:5000";
 
 Userfront.init("6bg65zyn");
