@@ -7,13 +7,14 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-custom bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" style={{color: "bisque"}} href="/">
           <img id="burger" 
-          className="m-3 d-inline-block align-text-top" 
+          className="m-3 d-inline-block align-text-center" 
           // width="30"
           height="50"
-          src={burger} 
+          src={burger}
           alt="burger"/>
+          Pantry Pickings
         </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
