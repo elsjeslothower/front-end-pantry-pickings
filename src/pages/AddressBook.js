@@ -1,6 +1,7 @@
 // REACT HANDLING
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS
 import ContactList from "../components/ContactList";
@@ -79,6 +80,8 @@ const updateContactApi = async () => {
 
 // APP RENDERING
 const AddressBook = () => {
+  const navigate = useNavigate();
+  const loggedIn = Userfront.accessToken();
   const [contactData, setContactData] = useState([]);
   const userId = Userfront.user["userId"]
   
@@ -89,7 +92,11 @@ const AddressBook = () => {
   };
 
   useEffect(() => {
-    getContacts();
+    if (!loggedIn) {
+      return navigate("/")
+    } else {
+      getContacts();
+    }
   }, []);
 
   const updateContact = (contact_id) => {

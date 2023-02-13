@@ -1,7 +1,18 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Userfront from "@userfront/react";
 Userfront.init("6bg65zyn");
 
 const Account = () => {
+  const navigate = useNavigate();
+  const loggedIn = Userfront.accessToken();
+  
+  useEffect(() => {
+    if (!loggedIn) {
+      return navigate("/");
+    }
+  }, [])
+  
   return (
     <div className="container">
       <h1 className="display-1">Account information for {Userfront.user["name"]}</h1>

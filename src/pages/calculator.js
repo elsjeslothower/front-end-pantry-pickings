@@ -1,6 +1,7 @@
 // REACT HANDLING
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS
 import RecipeCalcForm from "../components/forms/RecipeCalcForm";
@@ -121,6 +122,8 @@ const getPantryApi = async () => {
 
 // APP RENDERING
 const RecipeCalculator = () => {
+  const navigate = useNavigate();
+  const loggedIn = Userfront.accessToken();
   const [results, setResults] = useState([]);
   const [ingredients, setIngredients] = useState("");
   
@@ -159,7 +162,11 @@ const RecipeCalculator = () => {
   };
 
   useEffect(() => {
-    getIngredients();
+    if (!loggedIn) {
+      return navigate("/");
+    } else {
+      getIngredients();
+    }
   }, []);
 
   const handleSaveRecipe = (api_id, used_ingredient_count, missed_ingredient_count) => {

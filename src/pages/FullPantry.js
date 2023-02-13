@@ -1,6 +1,7 @@
 // REACT HANDLING
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //USERFRONT
 import Userfront from "@userfront/react";
@@ -76,6 +77,8 @@ const deletePantryItemApi = async (pantry_item_id) => {
 
 // APP RENDERING
 const FullPantry = () => {
+  const navigate = useNavigate();
+  const loggedIn = Userfront.accessToken();
   const [pantryData, setPantryData] = useState([]);
 
   const getPantry = () => {
@@ -85,7 +88,11 @@ const FullPantry = () => {
   };
 
   useEffect(() => {
-    getPantry();
+    if (!loggedIn) {
+      return navigate("/");
+    } else {
+      getPantry();
+    }
   }, []);
 
   const deletePantryItem = (pantry_item_id) => {

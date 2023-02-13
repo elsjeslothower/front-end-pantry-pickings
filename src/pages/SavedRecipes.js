@@ -1,6 +1,7 @@
 // REACT HANDLING
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS
 import RecipeList from "../components/RecipeList";
@@ -53,6 +54,8 @@ const removeRecipeApi = async (api_id) => {
 
 // APP RENDERING
 const SavedRecipes = () => {
+  const navigate = useNavigate();
+  const loggedIn = Userfront.accessToken();
   const [recipeData, setRecipeData] = useState([]);
   const userId = Userfront.user["userId"]
   
@@ -63,8 +66,11 @@ const SavedRecipes = () => {
   };
 
   useEffect(() => {
-    // data fetching code
-    getSavedRecipes();
+    if (!loggedIn) {
+      return navigate("/");
+    } else {
+      getSavedRecipes();
+    }
   }, []);
 
   const onRemoveRecipe = (api_id) => {
