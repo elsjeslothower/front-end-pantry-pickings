@@ -5,7 +5,7 @@ const mockRecipes = [
     recipe_title: "Test 1",
     used_ingredient_count: 5,
     summary: null,
-    source_url: "https://www.traderjoes.com/home",
+    source_url: null,
     recipe_img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80",
   },
   {
@@ -46,7 +46,7 @@ const mockRecipes = [
     api_id: 7689,
     recipe_title: "Tuna Melt",
     summary: "A healthy sandwich with no top slice of bread",
-    source_url: "https://chickenofthesea.com/",
+    source_url: null,
     recipe_img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7anyGwYY6pxp0hk4HuavSD6E9WwhhgwJAEuYPKUQ_gg&s",
   },
   {

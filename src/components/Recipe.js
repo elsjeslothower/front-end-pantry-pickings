@@ -10,17 +10,32 @@ const Recipe = (props) => {
         alt={`dish: ${props.recipe_title}`}
       />
       <div className="card-body" style={{color:"darksalmon"}}>
-        <h5 className="card-title">Title:{props.recipe_title}</h5>
+        <h5 className="card-title text-center">{props.recipe_title}</h5>
         <p className="card-text" style={{background:"bisque"}}>
           {props.summary 
           ? props.summary 
           : `This recipe utilizes ${props.used_ingredient_count} 
-            items already in your pantry`}
+            items already in your pantry. You would need to buy 
+            ${props.missed_ingredient_count} extra item(s) from the store.`}
         </p>
       </div>
-      <div className="mb-3 align-bottom text-center">
-        <a href={props.source_url} className="me-4 btn btn-info">Full Recipe</a>
-        <button className="ms-4 btn btn-danger">Remove</button>
+      <div className="mb-3 me-3 align-bottom text-end">
+        <a href={props.source_url ? props.source_url : "/404"} 
+          className="me-5 btn btn-info" 
+          style={{color:"#531209"}}
+        >
+          Full Recipe
+        </a>
+        <button 
+          className={props.source_url ? "ms-4 btn btn-danger" : "ms-4 btn btn-success"}
+          style={{color: "bisque"}}
+          onClick={props.source_url
+            ? () => props.onRemoveRecipe(props.api_id)
+            : () => props.handleSaveRecipe(props)
+          }
+        >
+          {props.source_url ? "Unsave" : "Save"}
+        </button>
       </div>
     </div>
   );

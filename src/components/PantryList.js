@@ -25,8 +25,8 @@ PantryList.propTypes = {
     category: PropTypes.string,
     exp_date: PropTypes.string,
   })),
-  onDeletePantryItem:PropTypes.func.isRequired,
-  handlePantryItemSubmit:PropTypes.func.isRequired
+  onDeletePantryItem: PropTypes.func.isRequired,
+  handlePantryItemSubmit: PropTypes.func.isRequired
 };
 
 export default PantryList;

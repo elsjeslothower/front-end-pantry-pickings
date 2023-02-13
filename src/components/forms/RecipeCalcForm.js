@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-const RecipeCalcForm = ({ handleRecipeSearchSubmit }) => {
+const RecipeCalcForm = ({ ingredients, handleRecipeSearchSubmit }) => {
   const [searchType, setSearchType] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [mealOptions, setMealOptions] = useState([]);
 
   const handleSubmitSearch = (event) => {
     event.preventDefault();
-    handleRecipeSearchSubmit(quantity);
+    handleRecipeSearchSubmit(ingredients, quantity);
   };
 
   const handleSearchType = (event) => {
@@ -30,7 +30,7 @@ const RecipeCalcForm = ({ handleRecipeSearchSubmit }) => {
   
   return (
     <form 
-      onSubmit={handleRecipeSearchSubmit}
+      onSubmit={handleSubmitSearch}
       htmlFor="rapidApiCall" 
       className="container">
       <div htmlFor="pantry" className="mb-3">

@@ -15,6 +15,8 @@ const RecipeList = (props) => {
         recipe_img={recipe.recipe_img}
         used_ingredient_count={recipe.used_ingredient_count}
         missed_ingredient_count={recipe.missed_ingredient_count}
+        onRemoveRecipe={props.onRemoveRecipe}
+        handleSaveRecipe={props.handleSaveRecipe}
       />
     ))
   );
@@ -22,7 +24,7 @@ const RecipeList = (props) => {
 
 RecipeList.propTypes = {
   recipeData: PropTypes.arrayOf(PropTypes.shape({
-    recipe_id: PropTypes.number.isRequired,
+    recipe_id: PropTypes.number,
     api_id: PropTypes.number.isRequired,
     recipe_title: PropTypes.string.isRequired,
     summary: PropTypes.string,
@@ -30,7 +32,9 @@ RecipeList.propTypes = {
     recipe_img: PropTypes.string,
     used_ingredient_count: PropTypes.number,
     missed_ingredient_count: PropTypes.number,
-  }))
+  })),
+  onRemoveRecipe: PropTypes.func.isRequired,
+  handleSaveRecipe: PropTypes.func.isRequired,
 };
 
 export default RecipeList;
