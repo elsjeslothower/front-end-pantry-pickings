@@ -14,11 +14,19 @@ Userfront.init("6bg65zyn");
 const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
 const localHost = "http://127.0.0.1:5000";
 
-const getSavedRecipesApi = async (userId) => {
+const getSavedRecipesApi = async () => {
   try {
     const res = await axios
-      .get(`${localHost}/user/${userId}/recipes`);
-    return res.data;
+      .get(`${kBaseUrl}/user/recipes`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      })
+      console.log(`success getSavedRecipes!! data here:"${res.data}"`)
+      console.log(res.data[0])
+      return (res.data)
   } catch (err) {
     console.log(err);
   }
@@ -28,7 +36,7 @@ const removeRecipeApi = async (api_id) => {
   console.log(api_id)
   try {
     const res = await axios 
-      .delete(`${localHost}/recipes/${api_id}`,
+      .delete(`${kBaseUrl}/recipes/${api_id}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -45,24 +53,27 @@ const removeRecipeApi = async (api_id) => {
 
 // APP RENDERING
 const SavedRecipes = () => {
-  const [recipeData, setRecipeData] = useState(mockRecipes)
+  const [recipeData, setRecipeData] = useState([]);
   const userId = Userfront.user["userId"]
   
-  const getSavedRecipes = (userId) => {
-    getSavedRecipesApi(userId).then((recipes) => {
+  const getSavedRecipes = () => {
+    getSavedRecipesApi().then((recipes) => {
       setRecipeData(recipes);
     });
   };
 
-  const onRemoveRecipe = (api_id) => {
-    console.log("remove recipe here");
-    // maybe add an option for if they change their mind?
-  };
+  useEffect(() => {
+    // data fetching code
+    getSavedRecipes();
+  }, []);
 
-  // useEffect(() => {
-  //   // data fetching code
-  //   getSavedRecipes(userId)
-  // }, [recipeData])
+  const onRemoveRecipe = (api_id) => {
+    removeRecipeApi(api_id);
+    setRecipeData((recipeData) =>
+      recipeData.filter((recipeData) => {
+        return recipeData.api_id !== api_id;
+      }))
+  };
 
   return (
     <div className="container">
