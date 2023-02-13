@@ -1,6 +1,10 @@
 {
-  "name": "front-end-pantry-pickings",
-  "version": "0.1.0",
+  "name": "pantry-pickings",
+  "description": "Elsje Slothower's Capstone Project for D18 Ada Dev Academy",
+  "version": "1.0.0",
+  "engines": {
+    "node": "19.x"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
