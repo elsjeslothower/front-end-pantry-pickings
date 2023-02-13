@@ -67,7 +67,7 @@ const saveRecipeApi = async (req) => {
   console.log(req);
   try {
     const res = await axios
-      .post(`${localHost}/recipes`, req,
+      .post(`${kBaseUrl}/recipes`, req,
       {
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const removeRecipeApi = async (api_id) => {
   console.log(api_id)
   try {
     const res = await axios 
-      .delete(`${localHost}/recipes/${api_id}`,
+      .delete(`${kBaseUrl}/recipes/${api_id}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const removeRecipeApi = async (api_id) => {
 const getPantryApi = async () => {
   try {
     const res = await axios
-      .get(`${localHost}/user/pantry`, 
+      .get(`${kBaseUrl}/user/pantry`, 
       {
         headers: {
           "Content-Type": "application/json",
@@ -199,7 +199,7 @@ const RecipeCalculator = () => {
     };
     findByIngredientsRapidApi(requestData)
       .then((res) => {
-        console.log(`${res} from RapidApi`);
+        console.log(`${res[0]["id"]} from RapidApi`);
         formatRapidApiResponse(res);
       })
       .catch((err) => console.log(err))

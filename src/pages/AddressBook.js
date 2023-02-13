@@ -21,7 +21,7 @@ Userfront.init("6bg65zyn");
 const getContactsApi = async () => {
   try {
     const res = await axios
-      .get(`${localHost}/user/contacts`,
+      .get(`${kBaseUrl}/user/contacts`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const addNewContactApi = async (req) => {
   console.log(req);
   try {
     const res = await axios
-      .post(`${localHost}/contacts`, req,
+      .post(`${kBaseUrl}/contacts`, req,
         {
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const deleteContactApi = async (contact_id) => {
   console.log(contact_id)
   try {
     const res = await axios
-    .delete(`${localHost}/contacts/${contact_id}`,
+    .delete(`${kBaseUrl}/contacts/${contact_id}`,
       {
         headers: {
           "Content-Type": "application/json",

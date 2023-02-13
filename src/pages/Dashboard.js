@@ -16,7 +16,7 @@ Userfront.init("6bg65zyn");
 const validateLoginApi = async () => {
   try {
     const res = await axios
-      .get(`${localHost}/login`, 
+      .get(`${kBaseUrl}login`, 
       {          headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,

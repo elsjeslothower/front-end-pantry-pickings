@@ -15,12 +15,13 @@ const Recipe = (props) => {
           {props.summary 
           ? props.summary 
           : `This recipe utilizes ${props.used_ingredient_count} 
-            items already in your pantry. You would need to buy 
+            item(s) already in your pantry. You would need to buy 
             ${props.missed_ingredient_count} extra item(s) from the store.`}
         </p>
       </div>
       <div className="mb-3 align-bottom">
         <a href={props.source_url ? props.source_url : "/404"} 
+          target="_blank" rel="noopener noreferrer"
           className="me-5 btn btn-info" 
           style={{color:"#531209"}}
         >

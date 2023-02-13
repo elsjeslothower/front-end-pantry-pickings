@@ -21,7 +21,7 @@ Userfront.init("6bg65zyn");
 const getPantryApi = async () => {
   try {
     const res = await axios
-      .get(`${localHost}/user/pantry`, 
+      .get(`${kBaseUrl}/user/pantry`, 
       {
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const addNewPantryItemApi = async (req) => {
   console.log(req);
   try {
     const res = await axios
-      .post(`${localHost}/pantry`, req,
+      .post(`${kBaseUrl}/pantry`, req,
         {
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const deletePantryItemApi = async (pantry_item_id) => {
   console.log(pantry_item_id)
   try {
     const res = await axios
-    .delete(`${localHost}/pantry/${pantry_item_id}`,
+    .delete(`${kBaseUrl}/pantry/${pantry_item_id}`,
       {
         headers: {
           "Content-Type": "application/json",
