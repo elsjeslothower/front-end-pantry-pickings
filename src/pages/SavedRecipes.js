@@ -24,6 +24,25 @@ const getSavedRecipesApi = async (userId) => {
   }
 };
 
+const removeRecipeApi = async (api_id) => {
+  console.log(api_id)
+  try {
+    const res = await axios 
+      .delete(`${localHost}/recipes/${api_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      },
+    );
+    console.log(`success!! data here:"${res.data}"`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // APP RENDERING
 const SavedRecipes = () => {
   // set useState hooks here
@@ -34,6 +53,11 @@ const SavedRecipes = () => {
     getSavedRecipesApi(userId).then((recipes) => {
       setRecipeData(recipes);
     });
+  };
+
+  const onRemoveRecipe = (api_id) => {
+    console.log("remove recipe here");
+    // maybe add an option for if they change their mind?
   };
 
   // useEffect(() => {
@@ -47,6 +71,7 @@ const SavedRecipes = () => {
       <div className="my-3 row">
         <RecipeList
           recipeData={recipeData}
+          onRemoveRecipe={onRemoveRecipe}
         />
       </div>
     </div>

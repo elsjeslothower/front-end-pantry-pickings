@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 
 // COMPONENTS
 import RecipeCalcForm from "../components/forms/RecipeCalcForm";
-import getPantryApi from "../pages/FullPantry";
+import RecipeList from "../components/RecipeList";
+import mockRecipes from "../mockData/mockRecipes";
 
 // USERFRONT
 import Userfront from "@userfront/react";
@@ -42,7 +43,7 @@ const getRecipesRapidApi = async (req) => {
   }
 };
 
-const saveRecipe = async (req) => {
+const saveRecipeApi = async (req) => {
   console.log(req);
   try {
     const res = await axios
@@ -61,7 +62,7 @@ const saveRecipe = async (req) => {
   }
 };
 
-const removeRecipe = async (api_id) => {
+const removeRecipeApi = async (api_id) => {
   console.log(api_id)
   try {
     const res = await axios 
@@ -80,23 +81,114 @@ const removeRecipe = async (api_id) => {
   }
 }
 
+const getPantryApi = async () => {
+  try {
+    const res = await axios
+      .get(`${localHost}/user/pantry`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `u ${Userfront.tokens.accessToken}`,
+        }
+      })
+      console.log(`success getPantry!! data here:"${res.data}"`)
+      console.log(res.data[0])
+      return (res.data)
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // APP RENDERING
 const RecipeCalculator = () => {
   const [results, setResults] = useState([]);
+  const [ingredients, setIngredients] = useState("");
   
-  const handleRecipeFinder = () => {
-    console.log("hey!! put something here!");
+  console.log(`YOOOOOOOO ${results}`);
+
+  const formatRapidApiResponse = (res) => {
+    let recipeData = []
+    for (let i = 0; i < res.length; i++) {
+      recipeData.push({
+        "api_id": res[i]["id"],
+        "recipe_title": res[i]["title"],
+        "recipe_img": res[i]["image"],
+        "used_ingredient_count": res[i]["usedIngredientCount"],
+        "missed_ingredient_count": res[i]["missedIngredientCount"]
+      })
+    }
+    setResults(recipeData);
+  }
+
+  const formatIngredients = (pantryItems) => {
+    const ingredientList = [];
+    for (let i = 0; i < pantryItems.length; i++) {
+      const item = pantryItems[i]["pantry_item_title"].toLowerCase()
+      ingredientList.push(item)
+    }
+    const ingredients = ingredientList.toString();
+    console.log(`Ingredients here: ${ingredientList}`)
+    return ingredients;
+  };
+
+  const getIngredients = () => {
+    getPantryApi().then((pantryItems) => {
+      const ingredients = formatIngredients(pantryItems);
+      setIngredients(ingredients);
+    })
+  };
+
+  useEffect(() => {
+    getIngredients();
+  }, []);
+
+  const handleSaveRecipe = (recipeData) => {
+    const newRecipeData = {
+      "saveRecipe handling here": 1,
+    };
+  };
+
+  const onRemoveRecipe = (api_id) => {
+    console.log("remove recipe here");
+  }
+
+  const handleRecipeFinder = (ingredients, quantity) => {
+    const requestData = {
+      "ingredients": ingredients,
+      "quantity": Number(quantity),
+    };
+    getRecipesRapidApi(requestData)
+      .then((res) => {
+        console.log(`${res} from RapidApi`);
+        formatRapidApiResponse(res);
+      })
+      .catch((err) => console.log(err))
   };
 
   return (
     <div className="container">
       <h1 className="display-1">Find-a-Recipe</h1>
       <RecipeCalcForm
-        handleRecipeFinder={handleRecipeFinder}
+        ingredients={ingredients}
+        handleRecipeSearchSubmit={handleRecipeFinder}
       />
       <div className="spacer p-3"></div>
-      <h1 className="text-start display-5">Results:</h1>
-      <p>Hide this ^^^ until API responds</p>
+      <div id="liveAlertPlaceholder"></div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Heads up!</strong> Links to recipes will only be active <strong>after</strong> you save them.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <div id="liveAlertPlaceholder"></div>
+      <h1 className="text-start display-5">
+        Results Listed Here:
+      </h1>
+      <div>
+        <RecipeList
+          recipeData={mockRecipes}
+          onRemoveRecipe={onRemoveRecipe}
+          handleSaveRecipe={handleSaveRecipe}
+        />
+      </div>
     </div>
   );
 };
