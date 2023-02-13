@@ -13,7 +13,7 @@ import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com";
 const localHost = "http://127.0.0.1:5000";
 
 Userfront.init("6bg65zyn");
@@ -22,16 +22,16 @@ Userfront.init("6bg65zyn");
 const getPantryApi = async () => {
   try {
     const res = await axios
-      .get(`${kBaseUrl}/user/pantry`, 
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
-        }
-      })
-      console.log(`success getPantry!! data here:"${res.data}"`)
-      console.log(res.data[0])
-      return (res.data)
+    .get(`${kBaseUrl}/user/pantry`, 
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `u ${Userfront.tokens.accessToken}`,
+      },
+    })
+    console.log(`success getPantry!! data here:"${res.data}"`);
+    console.log(res.data[0]);
+    return res.data;
   } catch (err) {
     console.log(err);
   }
@@ -40,15 +40,12 @@ const getPantryApi = async () => {
 const addNewPantryItemApi = async (req) => {
   console.log(req);
   try {
-    const res = await axios
-      .post(`${kBaseUrl}/pantry`, req,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `u ${Userfront.tokens.accessToken}`,
-          }
-        }, 
-      );
+    const res = await axios.post(`${kBaseUrl}/pantry`, req, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `u ${Userfront.tokens.accessToken}`,
+      },
+    });
     console.log(`success!! data here:"${res.data}"`);
     return res.data;
   } catch (err) {
@@ -57,23 +54,20 @@ const addNewPantryItemApi = async (req) => {
 };
 
 const deletePantryItemApi = async (pantry_item_id) => {
-  console.log(pantry_item_id)
+  console.log(pantry_item_id);
   try {
-    const res = await axios
-    .delete(`${kBaseUrl}/pantry/${pantry_item_id}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
-        }
+    const res = await axios.delete(`${kBaseUrl}/pantry/${pantry_item_id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `u ${Userfront.tokens.accessToken}`,
       },
-    );
+    });
     console.log(`success!! data here:"${res.data}"`);
     return res.data;
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 // APP RENDERING
 const Pantry = () => {
@@ -106,35 +100,42 @@ const Pantry = () => {
 
   const handlePantryItemSubmit = (itemTitle, itemCategory, itemExpDate) => {
     const newItemData = {
-      pantry_item_title:itemTitle,
-      category:itemCategory,
-      exp_date:itemExpDate,
+      pantry_item_title: itemTitle,
+      category: itemCategory,
+      exp_date: itemExpDate,
     };
     addNewPantryItemApi(newItemData)
       .then((res) => {
         console.log(`${res} here`);
         setPantryData([...pantryData, res]);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
-
 
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
       <h2 className="display-5">
-        {pantryData === [] 
-          ? "Use the form to add to your pantry"
-          : ""
-        }
+        {pantryData === [] ? "Use the form to add to your pantry" : ""}
       </h2>
       <div className="row">
         <div className="col">
-          <button class="my-3 btn btn-warning" style={{ color:"#531209" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <button
+            className="my-3 btn btn-warning"
+            style={{ color: "#531209" }}
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
             Click here to add items to your pantry
           </button>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body" style={{ background:"darksalmon" }}>
+          <div className="collapse" id="collapseExample">
+            <div
+              className="card card-body"
+              style={{ background: "darksalmon" }}
+            >
               <AddPantryItemForm
                 handlePantryItemSubmit={handlePantryItemSubmit}
               />
@@ -146,7 +147,7 @@ const Pantry = () => {
         <PantryList
           pantryData={pantryData}
           onDeletePantryItem={deletePantryItem}
-          handlePantryItemSubmit={handlePantryItemSubmit} 
+          handlePantryItemSubmit={handlePantryItemSubmit}
         />
       </div>
     </div>
