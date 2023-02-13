@@ -10,7 +10,7 @@ Specifically, the reason I chose this Capstone idea out of all the ideas swirlin
 ### Timeline
 The time allotted to complete this project was 15 days over three weeks. I split up this time 1:2 - one week for backend functionality, two for frontend. 
 ### Links
-- [Heroku backend](https://pantry-pickings-back-end.herokuapp.com/)
+- [Heroku backend](https://pantry-pickings-back-end.herokuapp.com)
 - [Backend repo on GitHub](https://github.com/elsjeslothower/back-end-pantry-pickings)
 - [UX website wireframe](https://www.canva.com/design/DAFW8CmXpBE/pTbGkiEpBRZa7kVETcPCtg/view?utm_content=DAFW8CmXpBE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 ## Intended MVP Featureset

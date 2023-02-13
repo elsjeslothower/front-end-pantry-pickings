@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 // COMPONENTS
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com/"
+const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com"
 
 const getPantryApi = (user_id) => {
   return axios
