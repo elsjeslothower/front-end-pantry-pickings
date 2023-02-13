@@ -32,7 +32,7 @@ const Recipe = (props) => {
           className={props.source_url ? "ms-4 btn btn-danger" : "ms-4 btn btn-success"}
           style={{color: "bisque"}}
           onClick={props.source_url
-            ? () => props.onRemoveRecipe(props.api_id)
+            ? () => props.onRemoveRecipe(props.recipe_id)
             : () => props.handleSaveRecipe(props.api_id, props.used_ingredient_count, props.missed_ingredient_count)
           }
         >

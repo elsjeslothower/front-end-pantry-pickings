@@ -1,6 +1,7 @@
 // REACT HANDLING
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./dashboard.css"
 
 // USERFRONT
 import Userfront from "@userfront/react";
@@ -17,7 +18,8 @@ const validateLoginApi = async () => {
   try {
     const res = await axios
       .get(`${kBaseUrl}login`, 
-      {          headers: {
+      {          
+        headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,
         }
@@ -53,7 +55,7 @@ const Dashboard = () => {
       <div className="accordion accordion-flush" id="accordionFlush">
         <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingOne">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <button className="accordion-button collapsed bg-closed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
               Pantry
             </button>
           </h2>
@@ -70,7 +72,7 @@ const Dashboard = () => {
         </div>
         <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingTwo">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            <button className="accordion-button collapsed bg-closed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
               Saved Recipes
             </button>
           </h2>
@@ -85,7 +87,7 @@ const Dashboard = () => {
 
         <div className="accordion-item" style={{ color: "#531209", background: "bisque" }}>
           <h2 className="accordion-header" id="flush-headingThree">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            <button className="accordion-button collapsed bg-closed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
               Contacts
             </button>
           </h2>

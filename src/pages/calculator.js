@@ -73,8 +73,8 @@ const saveRecipeApi = async (req) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Origin": `${kBaseUrl}/recipes`,
+          "Access-Control-Allow-Methods": "POST",
         }
       }, 
     );
@@ -85,15 +85,17 @@ const saveRecipeApi = async (req) => {
   }
 };
 
-const removeRecipeApi = async (api_id) => {
-  console.log(api_id)
+const removeRecipeApi = async (recipe_id) => {
+  console.log(recipe_id)
   try {
     const res = await axios 
-      .delete(`${kBaseUrl}/recipes/${api_id}`,
+      .delete(`${kBaseUrl}/recipes/${recipe_id}`,
       {
         headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,
+          "Access-Control-Allow-Origin": `${kBaseUrl}/recipes/${recipe_id}`,
+          "Access-Control-Allow-Methods": "DELETE",
         }
       },
     );
@@ -176,7 +178,7 @@ const RecipeCalculator = () => {
     .then((res) => {
       console.log(`handleSaveRecipe: success recipeInfoApi! ${res["id"]} here`);
       const newRecipeData = {
-        "api_id": res["id"],
+        "api_id": api_id,
         "recipe_title": res["title"],
         "summary": res["summary"],
         "source_url": res["sourceUrl"],
@@ -194,11 +196,11 @@ const RecipeCalculator = () => {
     .catch((err) => console.log(err))
   };
 
-  const onRemoveRecipe = (api_id) => {
-    removeRecipeApi(api_id);
+  const onRemoveRecipe = (recipe_id) => {
+    removeRecipeApi(recipe_id);
     setResults((results) =>
       results.filter((results) => {
-        return results.api_id !== api_id;
+        return results.recipe_id !== recipe_id;
       }))
   };
 

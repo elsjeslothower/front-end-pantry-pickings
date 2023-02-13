@@ -33,11 +33,11 @@ const getSavedRecipesApi = async () => {
   }
 };
 
-const removeRecipeApi = async (api_id) => {
-  console.log(api_id)
+const removeRecipeApi = async (recipe_id) => {
+  console.log(recipe_id)
   try {
     const res = await axios 
-      .delete(`${kBaseUrl}/recipes/${api_id}`,
+      .delete(`${kBaseUrl}/recipes/${recipe_id}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -73,12 +73,15 @@ const SavedRecipes = () => {
     }
   }, []);
 
-  const onRemoveRecipe = (api_id) => {
-    removeRecipeApi(api_id);
-    setRecipeData((recipeData) =>
+  const onRemoveRecipe = (recipe_id) => {
+    removeRecipeApi(recipe_id)
+    .then(
+      setRecipeData((recipeData) =>
       recipeData.filter((recipeData) => {
-        return recipeData.api_id !== api_id;
+        return recipeData.recipe_id !== recipe_id;
       }))
+    )
+    .catch((err) => console.log(err))
   };
 
   return (

@@ -1,0 +1,9 @@
+.bg-closed {
+    color: bisque;
+    background-color: darksalmon;
+}
+
+.bg-open {
+    color: darksalmon;
+    background-color: bisque;
+}
