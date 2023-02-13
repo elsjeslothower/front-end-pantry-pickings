@@ -22,7 +22,7 @@ const X_RAPIDAPI_KEY = '9053c90f68mshba9d59e69d50d31p17b1efjsn1c96b08397ba';
 Userfront.init("6bg65zyn");
 
 // API CALLS
-const getRecipesRapidApi = async (req) => {
+const findByIngredientsRapidApi = async (req) => {
   try {
     const res = await axios
     .get(`${rapidApiUrl}/findByIngredients`, 
@@ -36,7 +36,27 @@ const getRecipesRapidApi = async (req) => {
         'X-RapidAPI-Host': rapidApiHost
       }
     },)
-    console.log(`successful call!! data here:"${res.data}"`)
+    console.log(`success findByIngredients!! data here:"${res.data}"`)
+    return (res.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getRecipeInfoRapidApi = async (api_id) => {
+  try {
+    const res = await axios
+    .get(`${rapidApiUrl}/${api_id}/information`, 
+    {
+      params: {
+        id: api_id,
+      },
+      headers: {
+        'X-RapidAPI-Key': X_RAPIDAPI_KEY,
+        'X-RapidAPI-Host': rapidApiHost
+      }
+    },)
+    console.log(`successful RecipeInfo!! data here:"${res.data}"`)
     return (res.data);
   } catch (err) {
     console.log(err);
@@ -55,7 +75,7 @@ const saveRecipeApi = async (req) => {
         }
       }, 
     );
-  console.log(`success! data here: ${res.data}`);
+  console.log(`success saveRecipeApi! data here: ${res.data}`);
   return res.data;
   } catch (err) {
     console.log(err);
@@ -74,7 +94,7 @@ const removeRecipeApi = async (api_id) => {
         }
       },
     );
-    console.log(`success!! data here:"${res.data}"`);
+    console.log(`success removeRecipeApi!! data here:"${res.data}"`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -142,22 +162,42 @@ const RecipeCalculator = () => {
     getIngredients();
   }, []);
 
-  const handleSaveRecipe = (recipeData) => {
-    const newRecipeData = {
-      "saveRecipe handling here": 1,
-    };
+  const handleSaveRecipe = (api_id, used_ingredient_count, missed_ingredient_count) => {
+    getRecipeInfoRapidApi(api_id)
+    .then((res) => {
+      console.log(`handleSaveRecipe: success recipeInfoApi! ${res} here`);
+      const newRecipeData = {
+        "api_id": res["id"],
+        "recipe_title": res["title"],
+        "source_url": res["sourceUrl"],
+        "recipe_img": res["image"],
+        "used_ingredient_count": used_ingredient_count,
+        "missed_ingredient_count": missed_ingredient_count
+      };
+      saveRecipeApi(newRecipeData)
+        .then((newRecipe) => {
+          console.log(`handleSaveRecipe: success saveRecipeApi! ${newRecipe} here`);
+          setResults([...results, newRecipe])
+        })
+        .catch((err) => console.log(err))
+    })
+    .catch((err) => console.log(err))
   };
 
   const onRemoveRecipe = (api_id) => {
-    console.log("remove recipe here");
-  }
+    removeRecipeApi(api_id);
+    setResults((results) =>
+      results.filter((results) => {
+        return results.api_id !== api_id;
+      }))
+  };
 
   const handleRecipeFinder = (ingredients, quantity) => {
     const requestData = {
       "ingredients": ingredients,
-      "quantity": Number(quantity),
+      "quantity": quantity,
     };
-    getRecipesRapidApi(requestData)
+    findByIngredientsRapidApi(requestData)
       .then((res) => {
         console.log(`${res} from RapidApi`);
         formatRapidApiResponse(res);
@@ -180,11 +220,11 @@ const RecipeCalculator = () => {
         </div>
       <div id="liveAlertPlaceholder"></div>
       <h1 className="text-start display-5">
-        Results Listed Here:
+        Results:
       </h1>
-      <div>
+      <div className="my-3 row">
         <RecipeList
-          recipeData={mockRecipes}
+          recipeData={results}
           onRemoveRecipe={onRemoveRecipe}
           handleSaveRecipe={handleSaveRecipe}
         />
