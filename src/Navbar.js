@@ -24,7 +24,7 @@ const Navbar = () => {
               <a className="nav-link mt-3" aria-current="page" href="/dashboard">Dashboard</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/full-pantry">Pantry</a>
+              <a className="nav-link" href="/pantry">Pantry</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/saved-recipes">Saved Recipes</a>

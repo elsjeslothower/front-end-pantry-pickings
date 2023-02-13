@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
 import Dashboard from "./pages/Dashboard";
-import FullPantry from "./pages/FullPantry";
+import Pantry from "./pages/Pantry";
 import RecipeCalculator from "./pages/Calculator";
 import SavedRecipes from "./pages/SavedRecipes";
 import AddressBook from "./pages/AddressBook";
@@ -34,8 +34,8 @@ export const routes = [
     path: "/dashboard",
   },
   {
-    element: <FullPantry />,
-    path: "/full-pantry",
+    element: <Pantry />,
+    path: "/pantry",
   },
   {
     element: <RecipeCalculator />,

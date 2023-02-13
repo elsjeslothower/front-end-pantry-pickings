@@ -76,7 +76,7 @@ const deletePantryItemApi = async (pantry_item_id) => {
 }
 
 // APP RENDERING
-const FullPantry = () => {
+const Pantry = () => {
   const navigate = useNavigate();
   const loggedIn = Userfront.accessToken();
   const [pantryData, setPantryData] = useState([]);
@@ -153,4 +153,4 @@ const FullPantry = () => {
   );
 };
 
-export default FullPantry;
+export default Pantry;
