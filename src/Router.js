@@ -47,7 +47,7 @@ export const routes = [
   },
   {
     element: <AddressBook />,
-    path: "/address-book"
+    path: "/contacts"
   },
   {
     element: <Account />,
