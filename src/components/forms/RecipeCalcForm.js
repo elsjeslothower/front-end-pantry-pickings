@@ -12,7 +12,6 @@ const RecipeCalcForm = ({ ingredients, handleRecipeSearchSubmit }) => {
   };
 
   const handleSearchType = (event) => {
-    event.preventDefault();
     setSearchType(event.target.value);
   };
 
@@ -23,9 +22,13 @@ const RecipeCalcForm = ({ ingredients, handleRecipeSearchSubmit }) => {
   };
 
   const handleMealOptions = (event) => {
-    event.preventDefault();
-    setMealOptions([...mealOptions, event.target.value]);
-    console.log(`new meal options: ${mealOptions}`)
+    const newOption = event.target.value;
+    if (mealOptions.includes(newOption)) {
+      mealOptions.pop(newOption);
+      console.log(`${newOption} popped`);
+    } else {
+      setMealOptions([...mealOptions, newOption]);
+    }
   };
   
   return (
@@ -41,7 +44,7 @@ const RecipeCalcForm = ({ ingredients, handleRecipeSearchSubmit }) => {
           <input
             className="form-check-input"
             type="radio"
-            name="searchType"
+            name="exampleRadios"
             value={searchType}
             onChange={handleSearchType}
             id="exampleRadios1"
@@ -80,7 +83,7 @@ const RecipeCalcForm = ({ ingredients, handleRecipeSearchSubmit }) => {
 
       <div htmlFor="quantity">
         <label htmlFor="customRange2" className="form-label">
-          How many recipes?
+          How many recipes are you looking for?
         </label>
         <input
           type="range"

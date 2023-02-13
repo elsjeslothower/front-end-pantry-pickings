@@ -23,9 +23,13 @@ const AddContactForm = ({ handleContactSubmit }) => {
   };
 
   const handleNewContactDiet = (event) => {
-    event.preventDefault();
-    setNewContactDiet([...newContactDiet, event.target.value]);
-    console.log(`new diet choices: ${newContactDiet}`)
+    const diet = event.target.value;
+    if (newContactDiet.includes(diet)) {
+      newContactDiet.pop(diet);
+      console.log(`${diet} popped`);
+    } else {
+      setNewContactDiet([...newContactDiet, diet]);
+    }
   };
 
   const handleNewContactNotes = (event) => {
