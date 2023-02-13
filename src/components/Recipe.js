@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./cards.css"
 
 const Recipe = (props) => {
   return (
@@ -11,7 +12,7 @@ const Recipe = (props) => {
       />
       <div className="card-body" style={{color:"darksalmon"}}>
         <h5 className="card-title text-center">{props.recipe_title}</h5>
-        <p className="card-text" style={{background:"bisque"}}>
+        <p className="card-text overflow-auto" style={{background:"bisque"}}>
           {props.summary 
           ? props.summary 
           : `This recipe utilizes ${props.used_ingredient_count} 

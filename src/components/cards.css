@@ -1,0 +1,10 @@
+.card-text {
+    max-height: 200px;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.card-text::-webkit-scrollbar {
+    display: none;
+}
