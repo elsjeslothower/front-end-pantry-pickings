@@ -154,6 +154,22 @@ const AddressBook = () => {
           </div>
         </div>
       </div>
+      <div id="liveAlertPlaceholder"></div>
+      <div
+        className="alert alert-warning alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>Heads up!</strong> Current deployment does not support
+          editing contacts. Stay tuned for updates!
+        <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div id="liveAlertPlaceholder"></div>
+      
       <div className="mb-3 row">
         <ContactList
           contactData={contactData}
