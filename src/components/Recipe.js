@@ -19,7 +19,7 @@ const Recipe = (props) => {
             ${props.missed_ingredient_count} extra item(s) from the store.`}
         </p>
       </div>
-      <div className="mb-3 me-3 align-bottom text-end">
+      <div className="mb-3 align-bottom">
         <a href={props.source_url ? props.source_url : "/404"} 
           className="me-5 btn btn-info" 
           style={{color:"#531209"}}
@@ -31,7 +31,7 @@ const Recipe = (props) => {
           style={{color: "bisque"}}
           onClick={props.source_url
             ? () => props.onRemoveRecipe(props.api_id)
-            : () => props.handleSaveRecipe(props)
+            : () => props.handleSaveRecipe(props.api_id, props.used_ingredient_count, props.missed_ingredient_count)
           }
         >
           {props.source_url ? "Unsave" : "Save"}
@@ -51,7 +51,5 @@ Recipe.propTypes = {
   used_ingredient_count: PropTypes.number,
   missed_ingredient_count: PropTypes.number,
 };
-
-// Need to add used/missing ingredient count?
 
 export default Recipe;

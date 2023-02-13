@@ -45,10 +45,9 @@ const removeRecipeApi = async (api_id) => {
 
 // APP RENDERING
 const SavedRecipes = () => {
-  // set useState hooks here
   const [recipeData, setRecipeData] = useState(mockRecipes)
   const userId = Userfront.user["userId"]
-  // add handling functions here
+  
   const getSavedRecipes = (userId) => {
     getSavedRecipesApi(userId).then((recipes) => {
       setRecipeData(recipes);
