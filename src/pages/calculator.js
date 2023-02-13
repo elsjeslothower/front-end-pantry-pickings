@@ -73,6 +73,8 @@ const saveRecipeApi = async (req) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         }
       }, 
     );
@@ -172,10 +174,11 @@ const RecipeCalculator = () => {
   const handleSaveRecipe = (api_id, used_ingredient_count, missed_ingredient_count) => {
     getRecipeInfoRapidApi(api_id)
     .then((res) => {
-      console.log(`handleSaveRecipe: success recipeInfoApi! ${res} here`);
+      console.log(`handleSaveRecipe: success recipeInfoApi! ${res["id"]} here`);
       const newRecipeData = {
         "api_id": res["id"],
         "recipe_title": res["title"],
+        "summary": res["summary"],
         "source_url": res["sourceUrl"],
         "recipe_img": res["image"],
         "used_ingredient_count": used_ingredient_count,
