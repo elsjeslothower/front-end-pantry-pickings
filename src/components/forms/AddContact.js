@@ -9,7 +9,11 @@ const AddContactForm = ({ handleContactSubmit }) => {
 
   const handleSubmitContact = (event) => {
     event.preventDefault();
-    handleContactSubmit(newContactName, newContactIntolerances, newContactDiet, newContactNotes)
+    handleContactSubmit(newContactName, newContactIntolerances, newContactDiet, newContactNotes);
+    // reset form
+    setNewContactName("");
+    setNewContactIntolerances("");
+    setNewContactNotes("");
   };
 
   const handleNewContactName = (event) => {

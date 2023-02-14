@@ -9,6 +9,9 @@ const AddPantryItemForm = ({ handlePantryItemSubmit }) => {
   const handleSubmitItem = (event) => {
     event.preventDefault();
     handlePantryItemSubmit(newItemTitle, newItemCategory, newItemExpDate);
+    // reset forms
+    setNewItemTitle("");
+    setNewItemExpDate("");
   };
 
   const handleNewItemTitle = (event) => {
