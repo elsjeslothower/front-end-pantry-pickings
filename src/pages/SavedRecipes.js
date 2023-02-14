@@ -58,7 +58,32 @@ const SavedRecipes = () => {
   const loggedIn = Userfront.accessToken();
   const [recipeData, setRecipeData] = useState([]);
   const userId = Userfront.user["userId"]
+
+  const supportStringToHTML = () => {
+    if (!window.DOMParser) {
+      return false;
+    }
+    let parser = new DOMParser();
+    try {
+      parser.parseFromString('x', 'text/html');
+    } catch(err) {
+      return false;
+    }
+    return true;
+  };
   
+  const stringToHTML = (summary) => {
+    if (supportStringToHTML) {
+      let parser = new DOMParser();
+      let doc = parser.parseFromString(summary, 'text/html');
+      return doc.body.innerText
+    } else {
+      let dom = document.createElement('div');
+      dom.innerHTML = summary;
+      return dom;
+    }
+  };
+
   const getSavedRecipes = () => {
     getSavedRecipesApi().then((recipes) => {
       setRecipeData(recipes);
@@ -91,6 +116,7 @@ const SavedRecipes = () => {
         <RecipeList
           recipeData={recipeData}
           onRemoveRecipe={onRemoveRecipe}
+          renderSummary={stringToHTML}
         />
       </div>
     </div>
