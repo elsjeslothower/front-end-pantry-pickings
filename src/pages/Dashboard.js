@@ -103,7 +103,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <p className="mt-3">
         <button 
           className="btn btn-warning" 
@@ -123,7 +123,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
