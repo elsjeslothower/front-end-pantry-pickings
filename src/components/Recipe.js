@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./cards.css"
 
 const Recipe = (props) => {
+  console.log(props.renderSummary(props.summary))
   return (
     <div className="card m-2" style={{background:"bisque", width: "18rem"}}>
       <img 
@@ -14,7 +15,7 @@ const Recipe = (props) => {
         <h5 className="card-title text-center">{props.recipe_title}</h5>
         <p className="card-text overflow-auto" style={{background:"bisque"}}>
           {props.summary 
-          ? props.summary 
+          ? props.renderSummary(props.summary)
           : `This recipe utilizes ${props.used_ingredient_count} 
             item(s) already in your pantry. You would need to buy 
             ${props.missed_ingredient_count} extra item(s) from the store.`}

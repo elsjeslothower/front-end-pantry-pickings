@@ -17,6 +17,7 @@ const RecipeList = (props) => {
         missed_ingredient_count={recipe.missed_ingredient_count}
         onRemoveRecipe={props.onRemoveRecipe}
         handleSaveRecipe={props.handleSaveRecipe}
+        renderSummary={props.renderSummary}
       />
     ))
   );
@@ -35,6 +36,7 @@ RecipeList.propTypes = {
   })),
   onRemoveRecipe: PropTypes.func.isRequired,
   handleSaveRecipe: PropTypes.func.isRequired,
+  renderSummary: PropTypes.func.isRequired,
 };
 
 export default RecipeList;
