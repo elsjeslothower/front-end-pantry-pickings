@@ -128,11 +128,6 @@ const AddressBook = () => {
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Address Book</h1>
-      <h2 className="display-5">
-        {contactData === []
-          ? "Use the form to add a friend to your address book"
-          : ""}
-      </h2>
       <div>
         <button
           className="my-3 btn btn-warning"

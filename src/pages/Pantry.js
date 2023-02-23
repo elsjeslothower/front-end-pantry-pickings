@@ -125,11 +125,6 @@ const Pantry = () => {
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
-      {isEmpty(pantryData) ? 
-        <h6 className="mt-4 text-center alert alert-info">
-          Use the form to add items to your pantry
-        </h6> : ""
-      }
       <div className="row">
         <div className="col">
           <button
