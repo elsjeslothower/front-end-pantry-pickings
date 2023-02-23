@@ -18,6 +18,15 @@ const localHost = "http://127.0.0.1:5000";
 
 Userfront.init("6bg65zyn");
 
+const isEmpty = (pantryData) => {
+  for (let prop in pantryData) {
+    if (Object.prototype.hasOwnProperty.call(pantryData, prop)) {
+      return false;
+    }
+  }
+  return true;
+};
+
 // API CALLS
 const getPantryApi = async () => {
   try {
@@ -30,7 +39,7 @@ const getPantryApi = async () => {
       },
     })
     console.log(`success getPantry!! data here:"${res.data}"`);
-    console.log(res.data[0]);
+    console.log(`first item: ${res.data[0]}`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -74,6 +83,7 @@ const Pantry = () => {
   const navigate = useNavigate();
   const loggedIn = Userfront.accessToken();
   const [pantryData, setPantryData] = useState([]);
+  console.log(`pantryData: ${isEmpty(pantryData)}`)
 
   const getPantry = () => {
     getPantryApi().then((pantryItems) => {
@@ -115,9 +125,11 @@ const Pantry = () => {
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
-      <h2 className="display-5">
-        {pantryData === [] ? "Use the form to add to your pantry" : ""}
-      </h2>
+      {isEmpty(pantryData) ? 
+        <h6 className="mt-4 text-center alert alert-info">
+          Use the form to add items to your pantry
+        </h6> : ""
+      }
       <div className="row">
         <div className="col">
           <button

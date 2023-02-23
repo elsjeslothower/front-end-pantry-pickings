@@ -17,14 +17,15 @@ Userfront.init("6bg65zyn");
 const validateLoginApi = async () => {
   try {
     const res = await axios
-      .get(`${kBaseUrl}login`, 
+      .get(`${kBaseUrl}/login`, 
       {          
         headers: {
           "Content-Type": "application/json",
           Authorization: `u ${Userfront.tokens.accessToken}`,
         }
       })
-      return (res.data)
+      console.log(`success validateLoginApi! data here: ${res.data}`)
+      return (res.data);
   } catch (err) {
     console.error(err);
   }
@@ -103,7 +104,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* <div>
+      <div>
         <p className="mt-3">
         <button 
           className="btn btn-warning" 
@@ -123,7 +124,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
