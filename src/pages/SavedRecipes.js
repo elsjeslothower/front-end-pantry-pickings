@@ -52,6 +52,15 @@ const removeRecipeApi = async (recipe_id) => {
   }
 }
 
+const isEmpty = (recipeData) => {
+  for (let prop in recipeData) {
+    if (Object.prototype.hasOwnProperty.call(recipeData, prop)) {
+      return false;
+    }
+  }
+  return true;
+};
+
 // APP RENDERING
 const SavedRecipes = () => {
   const navigate = useNavigate();
@@ -112,13 +121,23 @@ const SavedRecipes = () => {
   return (
     <div className="container">
       <h1 className="display-1">{Userfront.user["name"]}'s Saved Recipes</h1>
-      <div className="my-3 row">
-        <RecipeList
-          recipeData={recipeData}
-          onRemoveRecipe={onRemoveRecipe}
-          renderSummary={stringToHTML}
-        />
-      </div>
+      {isEmpty(recipeData) ? 
+        <h6 className="mt-4 text-center alert alert-info">
+          Recipes will appear here after using the save feature in <a 
+          href="/calculator" 
+          className="alert-link">
+            Find-A-Recipe
+          </a>
+        </h6> :
+        <div className="my-3 row">
+          <RecipeList
+            recipeData={recipeData}
+            onRemoveRecipe={onRemoveRecipe}
+            renderSummary={stringToHTML}
+          />
+        </div>
+      }
+      
     </div>
   );
 };
