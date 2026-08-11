@@ -4,7 +4,7 @@ import Recipe from "./Recipe";
 
 const RecipeList = (props) => {
   return (
-    props.recipeData.map((recipe) => (
+    (props.recipeData || []).map((recipe) => (
       <Recipe
         key={recipe.api_id}
         recipe_id={recipe.recipe_id}

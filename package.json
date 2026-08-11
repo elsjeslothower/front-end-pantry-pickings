@@ -3,7 +3,7 @@
   "description": "Elsje Slothower's Capstone Project for D18 Ada Dev Academy",
   "version": "1.0.0",
   "engines": {
-    "node": "19.x"
+    "node": "24.x"
   },
   "private": false,
   "dependencies": {
