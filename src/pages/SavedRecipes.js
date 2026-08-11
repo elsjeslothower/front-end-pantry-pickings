@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 // COMPONENTS
 import RecipeList from "../components/RecipeList";
-import mockRecipes from "../mockData/mockRecipes";
 
 // AXIOS CALLS
 import axios from "axios";

@@ -6,7 +6,9 @@ const Register = () => {
   return (
     <div className="container">
       <h1 className="display-1 p-4">Create an account</h1>
-      <SignUp routing="virtual" signInUrl="/login" />
+      <div className="d-flex justify-content-center">
+        <SignUp routing="virtual" signInUrl="/login" />
+      </div>
     </div>
   );
 };

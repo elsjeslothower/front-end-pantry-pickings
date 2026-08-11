@@ -8,7 +8,9 @@ const Login = () => {
   return (
     <div className="container">
       <h1 className="display-1 p-4">Let's get cookin'!</h1>
-      <SignIn routing="virtual" signUpUrl="/register" />
+      <div className="d-flex justify-content-center">
+        <SignIn routing="virtual" signUpUrl="/register" />
+      </div>
     </div>
   );
 };

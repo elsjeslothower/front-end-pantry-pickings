@@ -9,7 +9,6 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 // COMPONENTS
 import PantryList from "../components/PantryList";
 import AddPantryItemForm from "../components/forms/AddPantryItem";
-import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";

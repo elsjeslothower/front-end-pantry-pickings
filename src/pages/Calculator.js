@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 // COMPONENTS
 import RecipeCalcForm from "../components/forms/RecipeCalcForm";
 import RecipeList from "../components/RecipeList";
-import mockRecipes from "../mockData/mockRecipes";
 
 // CLERK
 import { useAuth } from "@clerk/clerk-react";

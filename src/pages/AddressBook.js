@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 // COMPONENTS
 import ContactList from "../components/ContactList";
 import AddContactForm from "../components/forms/AddContact";
-import mockContacts from "../mockData/mockContact";
 
 // CLERK
 import { useAuth, useUser } from "@clerk/clerk-react";
