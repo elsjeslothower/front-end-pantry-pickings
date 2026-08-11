@@ -4,16 +4,26 @@ import './index.css';
 import Navbar from './Navbar';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ClerkProvider } from '@clerk/clerk-react';
 
 import { routes } from './Router';
 
 const router = createBrowserRouter(routes);
 
+const CLERK_PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navbar />
-    <RouterProvider router={router} />
+    <ClerkProvider
+      publishableKey={CLERK_PUBLISHABLE_KEY}
+      afterSignOutUrl="/"
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/dashboard"
+    >
+      <Navbar />
+      <RouterProvider router={router} />
+    </ClerkProvider>
   </React.StrictMode>
 );
 

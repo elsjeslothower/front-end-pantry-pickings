@@ -8,23 +8,20 @@ import ContactList from "../components/ContactList";
 import AddContactForm from "../components/forms/AddContact";
 import mockContacts from "../mockData/mockContact";
 
-// USERFRONT
-import Userfront from "@userfront/react";
+// CLERK
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com";
-const localHost = "http://127.0.0.1:5000";
-
-Userfront.init("6bg65zyn");
+const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
 // API CALLS
-const getContactsApi = async () => {
+const getContactsApi = async (token) => {
   try {
     const res = await axios.get(`${kBaseUrl}/user/contacts`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success!! data here:"${res.data}"`);
@@ -34,13 +31,13 @@ const getContactsApi = async () => {
   }
 };
 
-const addNewContactApi = async (req) => {
+const addNewContactApi = async (req, token) => {
   console.log(req);
   try {
     const res = await axios.post(`${kBaseUrl}/contacts`, req, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success!! data here:"${res.data}"`);
@@ -50,13 +47,13 @@ const addNewContactApi = async (req) => {
   }
 };
 
-const deleteContactApi = async (contact_id) => {
+const deleteContactApi = async (contact_id, token) => {
   console.log(contact_id);
   try {
     const res = await axios.delete(`${kBaseUrl}/contacts/${contact_id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success!! data here:"${res.data}"`);
@@ -73,23 +70,26 @@ const updateContactApi = async () => {
 // APP RENDERING
 const AddressBook = () => {
   const navigate = useNavigate();
-  const loggedIn = Userfront.accessToken();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { user } = useUser();
   const [contactData, setContactData] = useState([]);
-  const userId = Userfront.user["userId"];
 
   const getContacts = () => {
-    getContactsApi().then((contacts) => {
-      setContactData(contacts);
+    getToken().then((token) => {
+      getContactsApi(token).then((contacts) => {
+        setContactData(contacts);
+      });
     });
   };
 
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/");
-    } else {
-      getContacts();
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/");
+      return;
     }
-  }, []);
+    getContacts();
+  }, [isLoaded, isSignedIn]);
 
   const updateContact = (contact_id) => {
     updateContactApi(contact_id);
@@ -97,7 +97,7 @@ const AddressBook = () => {
   };
 
   const deleteContact = (contact_id) => {
-    deleteContactApi(contact_id);
+    getToken().then((token) => deleteContactApi(contact_id, token));
     setContactData((contactData) =>
       contactData.filter((contact) => {
         return contact.contact_id !== contact_id;
@@ -118,16 +118,18 @@ const AddressBook = () => {
       notes: notes,
     };
     console.log(newContactData);
-    addNewContactApi(newContactData)
-      .then((newContact) => {
-        setContactData([...contactData, newContact]);
-      })
-      .catch((err) => console.log(err));
+    getToken().then((token) => {
+      addNewContactApi(newContactData, token)
+        .then((newContact) => {
+          setContactData([...contactData, newContact]);
+        })
+        .catch((err) => console.log(err));
+    });
   };
 
   return (
     <div className="container">
-      <h1 className="display-1">{Userfront.user["name"]}'s Address Book</h1>
+      <h1 className="display-1">{user?.fullName}'s Address Book</h1>
       <h2 className="display-5">
         {contactData === []
           ? "Use the form to add a friend to your address book"

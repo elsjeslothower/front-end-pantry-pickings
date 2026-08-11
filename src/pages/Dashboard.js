@@ -1,27 +1,24 @@
 // REACT HANDLING
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css"
 
-// USERFRONT
-import Userfront from "@userfront/react";
+// CLERK
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com"
-const localHost = "http://127.0.0.1:5000";
-
-Userfront.init("6bg65zyn");
+const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
 // API CALLS
-const validateLoginApi = async () => {
+const validateLoginApi = async (token) => {
   try {
     const res = await axios
-      .get(`${kBaseUrl}login`, 
-      {          
+      .get(`${kBaseUrl}/login`,
+      {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
+          Authorization: `Bearer ${token}`,
         }
       })
       return (res.data)
@@ -33,23 +30,22 @@ const validateLoginApi = async () => {
 // APP RENDERING
 const Dashboard = () => {
   let navigate = useNavigate();
-  let loggedIn = Userfront.accessToken()
-  const [user, setUser] = useState(Userfront.user["userId"])
-  console.log(user)
-  console.log(setUser)
-  const userData = JSON.stringify(Userfront.user, null, 2);
+  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { user } = useUser();
+  const userData = JSON.stringify(user, null, 2);
 
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/login");
-    } else {
-      validateLoginApi();
-    };
-  }, [loggedIn])
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/login");
+      return;
+    }
+    getToken().then((token) => validateLoginApi(token));
+  }, [isLoaded, isSignedIn])
 
   return (
     <div className="container">
-      <h1 className="display-1 mb-5">Pantry Pickings for {Userfront.user["name"]}</h1>
+      <h1 className="display-1 mb-5">Pantry Pickings for {user?.fullName}</h1>
       {/* <button onClick={validateLoginApi}>Press here to try authentication</button> */}
       <h1 className="lead fs-2">Getting Started</h1>
       <div className="accordion accordion-flush" id="accordionFlush">

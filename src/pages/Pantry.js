@@ -3,8 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-//USERFRONT
-import Userfront from "@userfront/react";
+// CLERK
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 // COMPONENTS
 import PantryList from "../components/PantryList";
@@ -13,20 +13,17 @@ import mockPantry from "../mockData/mockPantry";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com";
-const localHost = "http://127.0.0.1:5000";
-
-Userfront.init("6bg65zyn");
+const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
 // API CALLS
-const getPantryApi = async () => {
+const getPantryApi = async (token) => {
   try {
     const res = await axios
-    .get(`${kBaseUrl}/user/pantry`, 
+    .get(`${kBaseUrl}/user/pantry`,
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     console.log(`success getPantry!! data here:"${res.data}"`);
@@ -37,13 +34,13 @@ const getPantryApi = async () => {
   }
 };
 
-const addNewPantryItemApi = async (req) => {
+const addNewPantryItemApi = async (req, token) => {
   console.log(req);
   try {
     const res = await axios.post(`${kBaseUrl}/pantry`, req, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success!! data here:"${res.data}"`);
@@ -53,13 +50,13 @@ const addNewPantryItemApi = async (req) => {
   }
 };
 
-const deletePantryItemApi = async (pantry_item_id) => {
+const deletePantryItemApi = async (pantry_item_id, token) => {
   console.log(pantry_item_id);
   try {
     const res = await axios.delete(`${kBaseUrl}/pantry/${pantry_item_id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success!! data here:"${res.data}"`);
@@ -72,25 +69,29 @@ const deletePantryItemApi = async (pantry_item_id) => {
 // APP RENDERING
 const Pantry = () => {
   const navigate = useNavigate();
-  const loggedIn = Userfront.accessToken();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { user } = useUser();
   const [pantryData, setPantryData] = useState([]);
 
   const getPantry = () => {
-    getPantryApi().then((pantryItems) => {
-      setPantryData(pantryItems);
+    getToken().then((token) => {
+      getPantryApi(token).then((pantryItems) => {
+        setPantryData(pantryItems);
+      });
     });
   };
 
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/");
-    } else {
-      getPantry();
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/");
+      return;
     }
-  }, []);
+    getPantry();
+  }, [isLoaded, isSignedIn]);
 
   const deletePantryItem = (pantry_item_id) => {
-    deletePantryItemApi(pantry_item_id);
+    getToken().then((token) => deletePantryItemApi(pantry_item_id, token));
     setPantryData((pantryData) =>
       pantryData.filter((pantryItem) => {
         return pantryItem.pantry_item_id !== pantry_item_id;
@@ -104,17 +105,19 @@ const Pantry = () => {
       category: itemCategory,
       exp_date: itemExpDate,
     };
-    addNewPantryItemApi(newItemData)
-      .then((res) => {
-        console.log(`${res} here`);
-        setPantryData([...pantryData, res]);
-      })
-      .catch((err) => console.log(err));
+    getToken().then((token) => {
+      addNewPantryItemApi(newItemData, token)
+        .then((res) => {
+          console.log(`${res} here`);
+          setPantryData([...pantryData, res]);
+        })
+        .catch((err) => console.log(err));
+    });
   };
 
   return (
     <div className="container">
-      <h1 className="display-1">{Userfront.user["name"]}'s Pantry</h1>
+      <h1 className="display-1">{user?.fullName}'s Pantry</h1>
       <h2 className="display-5">
         {pantryData === [] ? "Use the form to add to your pantry" : ""}
       </h2>

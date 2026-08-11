@@ -8,19 +8,16 @@ import RecipeCalcForm from "../components/forms/RecipeCalcForm";
 import RecipeList from "../components/RecipeList";
 import mockRecipes from "../mockData/mockRecipes";
 
-// USERFRONT
-import Userfront from "@userfront/react";
+// CLERK
+import { useAuth } from "@clerk/clerk-react";
 
 // AXIOS CALLS
 import axios from "axios";
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com";
-const localHost = "http://127.0.0.1:5000";
+const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
 const rapidApiUrl = "https://webknox-recipes.p.rapidapi.com/recipes";
 const rapidApiHost = "webknox-recipes.p.rapidapi.com";
 const X_RAPIDAPI_KEY = "9053c90f68mshba9d59e69d50d31p17b1efjsn1c96b08397ba";
-
-Userfront.init("6bg65zyn");
 
 // API CALLS
 const findByIngredientsRapidApi = async (req) => {
@@ -60,13 +57,13 @@ const getRecipeInfoRapidApi = async (api_id) => {
   }
 };
 
-const saveRecipeApi = async (req) => {
+const saveRecipeApi = async (req, token) => {
   console.log(req);
   try {
     const res = await axios.post(`${kBaseUrl}/recipes`, req, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
         "Access-Control-Allow-Origin": `${kBaseUrl}/recipes`,
         "Access-Control-Allow-Methods": "POST",
       },
@@ -78,13 +75,13 @@ const saveRecipeApi = async (req) => {
   }
 };
 
-const removeRecipeApi = async (recipe_id) => {
+const removeRecipeApi = async (recipe_id, token) => {
   console.log(recipe_id);
   try {
     const res = await axios.delete(`${kBaseUrl}/recipes/${recipe_id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
         "Access-Control-Allow-Origin": `${kBaseUrl}/recipes/${recipe_id}`,
         "Access-Control-Allow-Methods": "DELETE",
       },
@@ -96,12 +93,12 @@ const removeRecipeApi = async (recipe_id) => {
   }
 };
 
-const getPantryApi = async () => {
+const getPantryApi = async (token) => {
   try {
     const res = await axios.get(`${kBaseUrl}/user/pantry`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `u ${Userfront.tokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`success getPantry!! data here:"${res.data}"`);
@@ -115,7 +112,7 @@ const getPantryApi = async () => {
 // APP RENDERING
 const RecipeCalculator = () => {
   const navigate = useNavigate();
-  const loggedIn = Userfront.accessToken();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
   const [results, setResults] = useState([]);
   const [ingredients, setIngredients] = useState("");
 
@@ -147,19 +144,22 @@ const RecipeCalculator = () => {
   };
 
   const getIngredients = () => {
-    getPantryApi().then((pantryItems) => {
-      const ingredients = formatIngredients(pantryItems);
-      setIngredients(ingredients);
+    getToken().then((token) => {
+      getPantryApi(token).then((pantryItems) => {
+        const ingredients = formatIngredients(pantryItems);
+        setIngredients(ingredients);
+      });
     });
   };
 
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/");
-    } else {
-      getIngredients();
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/");
+      return;
     }
-  }, []);
+    getIngredients();
+  }, [isLoaded, isSignedIn]);
 
   const handleSaveRecipe = (
     api_id,
@@ -180,20 +180,22 @@ const RecipeCalculator = () => {
           used_ingredient_count: used_ingredient_count,
           missed_ingredient_count: missed_ingredient_count,
         };
-        saveRecipeApi(newRecipeData)
-          .then((newRecipe) => {
-            console.log(
-              `handleSaveRecipe: success saveRecipeApi! ${newRecipe} here`
-            );
-            setResults([...results, newRecipe]);
-          })
-          .catch((err) => console.log(err));
+        getToken().then((token) => {
+          saveRecipeApi(newRecipeData, token)
+            .then((newRecipe) => {
+              console.log(
+                `handleSaveRecipe: success saveRecipeApi! ${newRecipe} here`
+              );
+              setResults([...results, newRecipe]);
+            })
+            .catch((err) => console.log(err));
+        });
       })
       .catch((err) => console.log(err));
   };
 
   const onRemoveRecipe = (recipe_id) => {
-    removeRecipeApi(recipe_id);
+    getToken().then((token) => removeRecipeApi(recipe_id, token));
     setResults((results) =>
       results.filter((results) => {
         return results.recipe_id !== recipe_id;

@@ -9,20 +9,18 @@ import mockRecipes from "../mockData/mockRecipes";
 
 // AXIOS CALLS
 import axios from "axios";
-import Userfront from "@userfront/react";
-Userfront.init("6bg65zyn");
+import { useAuth, useUser } from "@clerk/clerk-react";
 
-const kBaseUrl = "https://pantry-pickings-back-end.herokuapp.com"
-const localHost = "http://127.0.0.1:5000";
+const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
-const getSavedRecipesApi = async () => {
+const getSavedRecipesApi = async (token) => {
   try {
     const res = await axios
-      .get(`${kBaseUrl}/user/recipes`, 
+      .get(`${kBaseUrl}/user/recipes`,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
+          Authorization: `Bearer ${token}`,
         }
       })
       console.log(`success getSavedRecipes!! data here:"${res.data}"`)
@@ -33,15 +31,15 @@ const getSavedRecipesApi = async () => {
   }
 };
 
-const removeRecipeApi = async (recipe_id) => {
+const removeRecipeApi = async (recipe_id, token) => {
   console.log(recipe_id)
   try {
-    const res = await axios 
+    const res = await axios
       .delete(`${kBaseUrl}/recipes/${recipe_id}`,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `u ${Userfront.tokens.accessToken}`,
+          Authorization: `Bearer ${token}`,
         }
       },
     );
@@ -55,38 +53,43 @@ const removeRecipeApi = async (recipe_id) => {
 // APP RENDERING
 const SavedRecipes = () => {
   const navigate = useNavigate();
-  const loggedIn = Userfront.accessToken();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { user } = useUser();
   const [recipeData, setRecipeData] = useState([]);
-  const userId = Userfront.user["userId"]
-  
+
   const getSavedRecipes = () => {
-    getSavedRecipesApi().then((recipes) => {
-      setRecipeData(recipes);
+    getToken().then((token) => {
+      getSavedRecipesApi(token).then((recipes) => {
+        setRecipeData(recipes);
+      });
     });
   };
 
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/");
-    } else {
-      getSavedRecipes();
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/");
+      return;
     }
-  }, []);
+    getSavedRecipes();
+  }, [isLoaded, isSignedIn]);
 
   const onRemoveRecipe = (recipe_id) => {
-    removeRecipeApi(recipe_id)
-    .then(
-      setRecipeData((recipeData) =>
-      recipeData.filter((recipeData) => {
-        return recipeData.recipe_id !== recipe_id;
-      }))
-    )
-    .catch((err) => console.log(err))
+    getToken().then((token) => {
+      removeRecipeApi(recipe_id, token)
+        .then(
+          setRecipeData((recipeData) =>
+          recipeData.filter((recipeData) => {
+            return recipeData.recipe_id !== recipe_id;
+          }))
+        )
+        .catch((err) => console.log(err))
+    });
   };
 
   return (
     <div className="container">
-      <h1 className="display-1">{Userfront.user["name"]}'s Saved Recipes</h1>
+      <h1 className="display-1">{user?.fullName}'s Saved Recipes</h1>
       <div className="my-3 row">
         <RecipeList
           recipeData={recipeData}

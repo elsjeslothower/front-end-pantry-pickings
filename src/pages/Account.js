@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Userfront from "@userfront/react";
-Userfront.init("6bg65zyn");
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 const Account = () => {
   const navigate = useNavigate();
-  const loggedIn = Userfront.accessToken();
-  
+  const { isLoaded, isSignedIn } = useAuth();
+  const { user } = useUser();
+
   useEffect(() => {
-    if (!loggedIn) {
-      return navigate("/");
+    if (!isLoaded) return;
+    if (!isSignedIn) {
+      navigate("/");
     }
-  }, [])
-  
+  }, [isLoaded, isSignedIn])
+
   return (
     <div className="container">
-      <h1 className="display-1">Account information for {Userfront.user["name"]}</h1>
+      <h1 className="display-1">Account information for {user?.fullName}</h1>
       <p className="btn btn-warning my-3">Insert info here if time allows</p>
       <p>Optional Enhancements:</p>
       <ul>

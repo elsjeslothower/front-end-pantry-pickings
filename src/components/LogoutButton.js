@@ -1,9 +1,13 @@
-import Userfront from "@userfront/react";
+import { SignedIn, SignOutButton } from "@clerk/clerk-react";
 
-Userfront.init("6bg65zyn");
-
-const LogoutButton = Userfront.build({
-  toolId: "mlbmrno"
-});
+const LogoutButton = () => {
+  return (
+    <SignedIn>
+      <SignOutButton>
+        <button className="nav-link btn btn-link">Log out</button>
+      </SignOutButton>
+    </SignedIn>
+  );
+};
 
 export default LogoutButton;
