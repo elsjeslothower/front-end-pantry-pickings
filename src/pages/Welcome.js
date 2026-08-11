@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./welcome.css"
+import "./Welcome.css"
 
 const burger = require('../images/clipart47340.png');
 
